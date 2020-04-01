@@ -1,32 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div :class="$style.wrapper">
+    <div :class="['container', $style.logoWrapper]">
+      <Logo/>
     </div>
-    <router-view/>
+    <div :class="$style.view">
+      <router-view/>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Logo from '@/components/Logo.vue';
+
+@Component({
+  components: {
+    Logo,
+  },
+})
+export default class App extends Vue {
+
 }
+</script>
 
-#nav {
-  padding: 30px;
+<style lang="scss" module>
+.wrapper {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-image: url("./assets/perete.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  @include tablet {
+    padding-top: 3rem;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  .logoWrapper  {
+    padding: 10px 0;
+
+    @include tablet {
+      text-align: left;
+      padding: 0 0 0 3rem;
+      position: absolute;
     }
   }
+}
+
+.view {
+  height: 100%;
 }
 </style>
