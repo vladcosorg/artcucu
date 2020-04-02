@@ -1,9 +1,8 @@
 <template>
   <div :class="['container', $style.wrapper]">
-    <img :src="item.url">
+    <img :src="require(`@/assets/picture/${this.item.filename}.png`)">
   </div>
 </template>
-
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
@@ -16,7 +15,7 @@ export default class Pic extends Vue {
 </script>
 
 <style lang="scss" module>
-.wrapper{
+.wrapper {
   $padding: 9px;
   overflow: hidden;
   flex: 1 1 0;

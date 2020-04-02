@@ -75,7 +75,7 @@ export default class LoveButton extends Vue {
   svg {
     cursor: pointer;
     width: $icon-width;
-
+    fill: #5c5f63;
   }
 
   &-inactive {

@@ -1,10 +1,10 @@
 <template>
   <div :class="[$style.wrapper, 'has-text-dark']">
     <div :class="$style.card">
-      <h1 class="title ">{{item.author}}</h1>
-      <h1 class="subtitle has-text-dark">{{item.title}}</h1>
-      <p class="has-text-dark has-text-weight-bold">{{item.technique}}</p>
-      <p class="has-text-dark has-text-weight-bold">{{item.dimensions}}</p>
+      <h1 :class="$style.cardAuthor">{{item.author}}</h1>
+      <h2 :class="$style.cardTitle">{{item.title}}</h2>
+      <p :class="$style.cardExtra">{{item.technique}}</p>
+      <p :class="$style.cardExtra">{{item.dimensions}}</p>
     </div>
   </div>
 </template>
@@ -32,11 +32,39 @@ export default class Label extends Vue {
 }
 
 .card {
-  background-color: white;
-  opacity: 0.5;
-  margin-top: 1.5rem;
-  padding: 1rem 2rem;
-  min-width: 40%;
-  max-width: 75%;
+  background-color: #ffffffcf;
+  margin: 1.5rem 1.5rem 0;
+  padding: 1rem 1rem;
+  color: $black-ter;
+  @include mobile {
+    width: 100%;
+  }
+  @include tablet {
+    width: 40%;
+  }
+  @include fullhd {
+    width: 30%;
+  }
+  &Author {
+    font-size: 1.9rem;
+    font-weight: 300;
+  }
+  &Title {
+    &:before{
+      content: "“";
+    }
+    &:after{
+      content: "”";
+    }
+    font-weight: 700;
+    font-style: italic;
+    font-size: $size-5;
+  }
+  &Extra {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
 }
+
+
 </style>

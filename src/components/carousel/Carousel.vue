@@ -16,12 +16,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import pic1 from '@/assets/picture/dima.png';
-import pic2 from '@/assets/picture/ruslan.png';
 import LikeButton from '@/components/LikeButton.vue';
 import Label from '@/components/carousel/Label.vue';
 import Pic from '@/components/carousel/Pic.vue';
 import { CarouselItem } from '@/types';
+import data from '@/data.json';
 
 @Component({
   components: {
@@ -34,22 +33,7 @@ export default class Carousel extends Vue {
   items!: CarouselItem[];
 
   created() {
-    this.items = [
-      {
-        author: 'Rosca Ruslan',
-        title: 'Ourobros',
-        technique: 'Monotipie',
-        dimensions: '300x400',
-        url: pic1,
-      },
-      {
-        author: 'Rosca Ruslan',
-        title: 'Ourobros',
-        technique: 'Monotipie',
-        dimensions: '300x400',
-        url: pic2,
-      },
-    ];
+    this.items = data;
   }
 }
 </script>
@@ -57,7 +41,7 @@ export default class Carousel extends Vue {
 <style lang="scss">
 
 .mdi-chevron-left, .mdi-chevron-right {
-  background-color: black;
+  background-color: #5c5f63;
   mask: url("~@/assets/arrow.svg") no-repeat 100% 100%;
   background-repeat: no-repeat;
 

@@ -1,8 +1,19 @@
+
 module.exports = {
+  pluginOptions: {
+    webpackBundleAnalyzer: {
+      openAnalyzer: false,
+    },
+  },
+  configureWebpack: {
+    module: {
+      rules: [],
+    },
+  },
   css: {
     loaderOptions: {
       scss: {
-        prependData: '@import "~bulma/sass/utilities/_all"; @import "~@/assets/scss/variables";',
+        prependData: '@import "~@/assets/scss/variables";',
       },
     },
   },

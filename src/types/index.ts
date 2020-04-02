@@ -3,5 +3,5 @@ export interface CarouselItem {
   title: string;
   technique: string;
   dimensions: string;
-  url: string;
+  filename: string;
 }
