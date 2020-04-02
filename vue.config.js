@@ -1,5 +1,7 @@
-
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/artcucu/'
+    : '/',
   pluginOptions: {
     webpackBundleAnalyzer: {
       openAnalyzer: false,
