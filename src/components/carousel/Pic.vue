@@ -1,6 +1,9 @@
-<template>
+<template >
   <div :class="['container', $style.wrapper]">
-    <img :src="require(`@/assets/picture/${this.item.filename}.png`)">
+  <picture >
+    <source type="image/webp" :srcset="image('webp')" :alt="item.title" >
+    <img :src="image('jpeg')" :alt="item.title">
+  </picture>
   </div>
 </template>
 
@@ -10,7 +13,12 @@ import { CarouselItem } from '@/types';
 
 @Component
 export default class Pic extends Vue {
-  @Prop() item!: CarouselItem
+  @Prop() item!: CarouselItem;
+
+  image(format: 'png'|'jpg'|'webp'): string {
+    // eslint-disable-next-line global-require,import/no-dynamic-require
+    return require(`@/assets/picture/${this.item.filename}.${format}`);
+  }
 }
 </script>
 

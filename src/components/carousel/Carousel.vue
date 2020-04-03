@@ -54,22 +54,21 @@ export default class Carousel extends Vue {
   transform: rotate(180deg);
 }
 
-.carousel-arrow .icon.has-icons-left {
-  left: $layout-padding;
-}
+.carousel-arrow {
+  .icon {
+    top: calc(50% - 100px) !important;
+    border: none !important;
+    color: transparent !important;
+    background-color: transparent !important;
+  }
 
-.carousel-arrow .icon.has-icons-right {
-  right: $layout-padding;
-}
+  .has-icons-left {
+    left: $layout-padding;
+  }
 
-.carousel-arrow .icon.has-icons-left, .carousel-arrow .icon.has-icons-right {
-  top: calc(50% - 100px) !important;
-}
-
-.carousel-arrow .icon {
-  color: transparent !important;
-  border-color: inherit !important;
-  background-color: transparent !important;
+  .has-icons-right {
+    right: $layout-padding;
+  }
 }
 
 .carousel {
