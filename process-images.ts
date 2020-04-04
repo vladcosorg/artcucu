@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import sharp, { OutputInfo } from 'sharp';
+import sharp from 'sharp';
 import { sync as glob } from 'glob';
 import Svgo from 'svgo';
 import filesize from 'filesize';
@@ -68,20 +68,20 @@ function compile(options: Options) {
 
 
       if (options.sharp) {
-        options.sharp.forEach(operation => {
+        options.sharp.forEach((operation) => {
           const sharpFile = sharp(inFilePath);
           const fileName = operation(sharpFile, baseName);
           const generatedOutFilePath = path.join(dirName, fileName);
 
           sharpFile.toFile(generatedOutFilePath)
-            .then(info => report(inFilePath, generatedOutFilePath));
+            .then((info) => report(inFilePath, generatedOutFilePath));
         });
       }
     });
 }
 
 interface Options {
-  glob: string,
+  glob: string;
   sharp?: { (object: sharp.Sharp, basename: string): string }[];
 }
 
@@ -108,7 +108,7 @@ compile({
         .toFormat('jpeg', {
           quality: 1,
           optimiseScans: true,
-          progressive: true
+          progressive: true,
         });
 
       return `${basename}_lqip.jpg`;

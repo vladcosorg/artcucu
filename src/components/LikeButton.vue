@@ -75,7 +75,6 @@ export default class LoveButton extends Vue {
   svg {
     cursor: pointer;
     width: $icon-width;
-    fill: #5c5f63;
   }
 
   &-inactive {
@@ -84,9 +83,10 @@ export default class LoveButton extends Vue {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    fill: #5c5f63;
   }
 
-  &:hover, &-active {
+  &-inactive:hover, &-active {
     fill: #9E3E3B;
   }
 

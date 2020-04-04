@@ -50,6 +50,7 @@ export default class Label extends Vue {
     font-weight: 300;
   }
   &Title {
+    margin-top: 0.3rem;
     &:before{
       content: "“";
     }
@@ -63,6 +64,7 @@ export default class Label extends Vue {
   &Extra {
     font-size: 0.9rem;
     font-weight: 400;
+    line-height: 1.2;
   }
 }
 
