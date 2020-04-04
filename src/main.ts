@@ -1,12 +1,12 @@
 import Vue from 'vue';
-import { Carousel } from 'buefy';
 import App from './App.vue';
 
 // import 'animate.css';
 import './assets/scss/app.scss';
 import 'webp-in-css/polyfill';
 
-Vue.use(Carousel);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+Vue.use(require('buefy/dist/components/carousel'));
 
 Vue.config.productionTip = false;
 
