@@ -61,7 +61,7 @@ export default class LoveButton extends Vue {
 }
 
 .cucu-love {
-  $icon-width: 40px;
+  $icon-width: 30px;
   position: relative;
   line-height: 0;
 

@@ -66,7 +66,6 @@ function compile(options: Options) {
         return;
       }
 
-
       if (options.sharp) {
         options.sharp.forEach((operation) => {
           const sharpFile = sharp(inFilePath);
@@ -112,6 +111,47 @@ compile({
         });
 
       return `${basename}_lqip.jpg`;
+    },
+    (file: sharp.Sharp, basename: string): string => {
+      file
+        .blur(20)
+        .resize(350)
+        .toFormat('jpeg', {
+          quality: 80,
+          optimiseScans: true,
+          progressive: true,
+        });
+
+      return `${basename}_350w.jpg`;
+    },
+    (file: sharp.Sharp, basename: string): string => {
+      file
+        .resize(350)
+        .toFormat('webp', {
+          quality: 80,
+        });
+
+      return `${basename}_350w.webp`;
+    },
+    (file: sharp.Sharp, basename: string): string => {
+      file
+        .resize(750)
+        .toFormat('jpeg', {
+          quality: 80,
+          optimiseScans: true,
+          progressive: true,
+        });
+
+      return `${basename}_750w.jpg`;
+    },
+    (file: sharp.Sharp, basename: string): string => {
+      file
+        .resize(750)
+        .toFormat('webp', {
+          quality: 80,
+        });
+
+      return `${basename}_750w.webp`;
     },
   ],
 });

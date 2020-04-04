@@ -4,6 +4,16 @@ module.exports = {
       openAnalyzer: false,
     },
   },
+  chainWebpack: (config) => {
+    config.module
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap((options) => ({
+        ...options,
+        limit: 100,
+      }));
+  },
   configureWebpack: {
     module: {
       rules: [],

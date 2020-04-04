@@ -19,7 +19,8 @@ export default class Logo extends Vue {
 
 <style lang="scss" module>
 .logo {
-  width: 32px;
+  width: 22px;
   fill: white;
+  opacity: 0.7;
 }
 </style>

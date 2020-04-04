@@ -4,7 +4,7 @@
       <Logo/>
     </div>
     <div :class="$style.view">
-      <router-view/>
+      <Home/>
     </div>
   </div>
 </template>
@@ -12,10 +12,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Logo from '@/components/Logo.vue';
+import Home from '@/views/Home.vue';
 
 @Component({
   components: {
     Logo,
+    Home,
   },
 })
 export default class App extends Vue {

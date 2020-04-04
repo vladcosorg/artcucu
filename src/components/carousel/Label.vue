@@ -45,28 +45,39 @@ export default class Label extends Vue {
   @include fullhd {
     width: 30%;
   }
+
   &Author {
     font-size: 1.9rem;
     font-weight: 300;
   }
+
   &Title {
     margin-top: 0.3rem;
-    &:before{
+
+    &:before {
       content: "“";
     }
-    &:after{
+
+    &:after {
       content: "”";
     }
-    font-weight: 700;
+
+    font-weight: 300;
     font-style: italic;
     font-size: $size-5;
+
+    @include mobile {
+      line-height: 1.1;
+    }
   }
+
   &Extra {
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.2;
+    @include mobile {
+      display: none;
+    }
   }
 }
-
-
 </style>

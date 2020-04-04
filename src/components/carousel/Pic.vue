@@ -1,12 +1,18 @@
 <template>
   <div :class="['container', $style.wrapper]">
     <v-lazy-image
-      :src="image('jpg')"
+      :srcset="srcset('jpg')"
+      sizes="(max-width: 420px) 350px, (max-width: 800px) 750px, 900px"
       :src-placeholder="image('jpg', '_lqip')"
       :alt="item.title"
+      :src="image('jpg')"
       use-picture
     >
-      <source type="image/webp" :srcset="image('webp')" :alt="item.title">
+      <source
+        type="image/webp"
+        :srcset="srcset('webp')"
+        sizes="(max-width: 420px) 350px, 900px"
+      >
     </v-lazy-image>
   </div>
 </template>
@@ -23,6 +29,11 @@ import VLazyImage from 'v-lazy-image';
 })
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
+
+  srcset(format: 'png' | 'jpg' | 'webp'): string {
+    return `${this.image(format, '_350w')} 350w, ${this.image(format, '_750w')} 750w,
+    ${this.image(format)} 950w`;
+  }
 
   image(format: 'png' | 'jpg' | 'webp', suffix = ''): string {
     // eslint-disable-next-line global-require,import/no-dynamic-require

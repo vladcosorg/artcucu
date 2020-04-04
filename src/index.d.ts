@@ -1,3 +1,6 @@
+import { PluginObject } from 'vue/types/plugin';
+import _Vue from 'vue';
+import { BuefyConfig } from 'buefy';
 
 declare module '*.svg' {
   import Vue = require('vue');

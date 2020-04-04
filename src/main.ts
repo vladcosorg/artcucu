@@ -1,21 +1,20 @@
 import Vue from 'vue';
-import Buefy from 'buefy';
+import { Carousel } from 'buefy';
 import App from './App.vue';
-import router from './router';
 
 // import 'animate.css';
 import './assets/scss/app.scss';
-
 import 'webp-in-css/polyfill';
 
-Vue.use(Buefy);
+Vue.use(Carousel);
 
 Vue.config.productionTip = false;
+
 document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 });
+
 new Vue({
-  router,
   render: (h) => h(App),
 }).$mount('#app');
