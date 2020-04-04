@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LogoSvg from '@/assets/cucu.svg?inline';
+import LogoSvg from '@/assets/images/cucu.svg?inline';
 
 @Component({
   components: {

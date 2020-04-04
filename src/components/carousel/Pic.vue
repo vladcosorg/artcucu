@@ -1,28 +1,50 @@
-<template >
+<template>
   <div :class="['container', $style.wrapper]">
-  <picture >
-    <source type="image/webp" :srcset="image('webp')" :alt="item.title" >
-    <img :src="image('jpeg')" :alt="item.title">
-  </picture>
+    <v-lazy-image
+      :src="image('jpg')"
+      :src-placeholder="image('jpg', '_lqip')"
+      :alt="item.title"
+      use-picture
+    >
+      <source type="image/webp" :srcset="image('webp')" :alt="item.title">
+    </v-lazy-image>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
+import VLazyImage from 'v-lazy-image';
 
-@Component
+@Component({
+  components: {
+    VLazyImage,
+  },
+})
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
-  image(format: 'png'|'jpg'|'webp'): string {
+  image(format: 'png' | 'jpg' | 'webp', suffix = ''): string {
     // eslint-disable-next-line global-require,import/no-dynamic-require
-    return require(`@/assets/picture/${this.item.filename}.${format}`);
+    return require(`@/assets/images/gallery/${this.item.filename}${suffix}.${format}`);
   }
 }
 </script>
 
 <style lang="scss" module>
+
+:global {
+  .v-lazy-image {
+    filter: blur(10);
+    transition: filter 1.6s;
+    will-change: filter;
+  }
+
+  .v-lazy-image-loaded {
+    filter: blur(0);
+  }
+}
+
 .wrapper {
   $padding: 9px;
   overflow: hidden;

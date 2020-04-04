@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HeartStrokeIcon from '@/assets/heart-stroke.svg?inline';
-import HeartFullIcon from '@/assets/heart-full.svg?inline';
+import HeartStrokeIcon from '@/assets/images/heart-stroke.svg?inline';
+import HeartFullIcon from '@/assets/images/heart-full.svg?inline';
 
 @Component({
   components: {

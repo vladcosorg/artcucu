@@ -42,7 +42,7 @@ export default class Carousel extends Vue {
 
 .mdi-chevron-left, .mdi-chevron-right {
   background-color: #5c5f63;
-  mask: url("~@/assets/arrow.svg") no-repeat 100% 100%;
+  mask: url("~@/assets/images/arrow.svg") no-repeat 100% 100%;
   background-repeat: no-repeat;
 
   &:hover {

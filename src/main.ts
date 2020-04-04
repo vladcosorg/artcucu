@@ -3,8 +3,10 @@ import Buefy from 'buefy';
 import App from './App.vue';
 import router from './router';
 
-import 'animate.css';
+// import 'animate.css';
 import './assets/scss/app.scss';
+
+import 'webp-in-css/polyfill';
 
 Vue.use(Buefy);
 
