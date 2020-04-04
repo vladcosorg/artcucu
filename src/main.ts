@@ -1,10 +1,11 @@
 import Vue from 'vue';
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
 import { Carousel } from 'buefy';
 import App from './App.vue';
 import './assets/scss/app.scss';
 import 'webp-in-css/polyfill';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 
 Vue.use(Carousel);
 
