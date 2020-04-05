@@ -23,7 +23,7 @@ export default class Label extends Vue {
 <style lang="scss" module>
 .wrapper {
   background-position: top center;
-  background-image: url("~@/assets/images/podea.jpg");
+  background-image: url("~@/assets/images/podea.jpeg");
   background-size: cover;
   width: 100%;
   text-align: center;

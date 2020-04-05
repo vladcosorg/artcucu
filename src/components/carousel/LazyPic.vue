@@ -30,7 +30,7 @@
   <div :class="['container', $style.wrapper]">
     <v-lazy-image
       :srcset="srcset('jpeg')"
-      :sizes="sizes"
+      sizes="(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw"
       :src-placeholder="image('jpeg', '_lqip')"
       :alt="item.title"
       :src="image('jpeg')"
@@ -39,7 +39,7 @@
       <source
         type="image/webp"
         :srcset="srcset('webp')"
-        :sizes="sizes"
+        sizes="(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw"
       >
     </v-lazy-image>
   </div>
@@ -57,8 +57,6 @@ import VLazyImage from 'v-lazy-image';
 })
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
-
-  sizes = '(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw';
 
   srcset(format: 'png' | 'jpeg' | 'webp'): string {
     const parts: string[] = [];

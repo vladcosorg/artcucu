@@ -30,7 +30,7 @@ export default class App extends Vue {
   height: calc(var(--vh, 1vh) * 100);
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-image: url("./assets/images/perete.jpg");
+  background-image: url("./assets/images/perete.jpeg");
   background-attachment: fixed;
   background-size: cover;
   display: flex;

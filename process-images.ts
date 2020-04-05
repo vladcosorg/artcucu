@@ -84,6 +84,45 @@ interface Options {
   sharp?: { (object: sharp.Sharp, basename: string): string }[];
 }
 
+function applyResponsiveOperation(...sizes: number[]) {
+  const operations: ((file: sharp.Sharp, basename: string) => string)[] = [];
+  sizes.forEach((size) => {
+    ['webp', 'jpeg'].forEach((format) => {
+      operations.push((file: sharp.Sharp, basename: string) => {
+        file
+          .resize(size, size, {
+            fit: 'inside',
+            withoutEnlargement: true,
+          })
+          .toFormat(format, {
+            quality: 80,
+          });
+
+        return `${basename}_${size}w.${format}`;
+      });
+    });
+  });
+  return operations;
+}
+
+function applyJpegOperation(file: sharp.Sharp, basename: string): string {
+  file
+    .toFormat('jpeg', {
+      quality: 80,
+      optimiseScans: true,
+    });
+
+  return `${basename}.jpeg`;
+}
+
+function applyWebpOperation(file: sharp.Sharp, basename: string): string {
+  file
+    .toFormat('webp', {
+      quality: 80,
+    });
+  return `${basename}.webp`;
+}
+
 fs.rmdirSync(outDirPath, { recursive: true });
 
 compile({
@@ -110,66 +149,8 @@ compile({
           progressive: true,
         });
 
-      return `${basename}_lqip.jpg`;
+      return `${basename}_lqip.jpeg`;
     },
-    (file: sharp.Sharp, basename: string): string => {
-      file
-        .blur(20)
-        .resize(350)
-        .toFormat('jpeg', {
-          quality: 80,
-          optimiseScans: true,
-          progressive: true,
-        });
-
-      return `${basename}_350w.jpg`;
-    },
-    (file: sharp.Sharp, basename: string): string => {
-      file
-        .resize(350)
-        .toFormat('webp', {
-          quality: 80,
-        });
-
-      return `${basename}_350w.webp`;
-    },
-    (file: sharp.Sharp, basename: string): string => {
-      file
-        .resize(750)
-        .toFormat('jpeg', {
-          quality: 80,
-          optimiseScans: true,
-          progressive: true,
-        });
-
-      return `${basename}_750w.jpg`;
-    },
-    (file: sharp.Sharp, basename: string): string => {
-      file
-        .resize(750)
-        .toFormat('webp', {
-          quality: 80,
-        });
-
-      return `${basename}_750w.webp`;
-    },
+    ...applyResponsiveOperation(1600, 1400, 1200, 1000, 800),
   ],
 });
-
-function applyJpegOperation(file: sharp.Sharp, basename: string): string {
-  file
-    .toFormat('jpeg', {
-      quality: 80,
-      optimiseScans: true,
-    });
-
-  return `${basename}.jpg`;
-}
-
-function applyWebpOperation(file: sharp.Sharp, basename: string): string {
-  file
-    .toFormat('webp', {
-      quality: 80,
-    });
-  return `${basename}.webp`;
-}
