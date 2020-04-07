@@ -36,15 +36,12 @@
       :src-placeholder="image('jpeg', '_lqip')"
       :alt="item.title"
       :src="image('jpeg')"
-      :srcset="srcset('jpeg')"
-      :sizes="sizes"
       use-picture
     >
-<!--      <source-->
-<!--        type="image/webp"-->
-<!--        :srcset="srcset('webp')"-->
-<!--        :sizes="sizes"-->
-<!--      >-->
+      <source
+        type="image/webp"
+        :src="image('webp')"
+      >
     </v-lazy-image>
   </div>
 </template>

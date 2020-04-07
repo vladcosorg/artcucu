@@ -1,9 +1,5 @@
 <template>
-  <span :class="$style.wrapper">
     <LogoSvg :class="$style.logo"/>
-<!--    <span :class="$style.text">#staiacasa</span>-->
-<!--    <span :class="$style.text">Curățați suprafețele cu dezinfectant</span>-->
-  </span>
 </template>
 
 
@@ -23,9 +19,6 @@ export default class Logo extends Vue {
 
 <style lang="scss" module>
 
-.wrapper {
-  display: flex;
-}
 
 .logo {
   width: 32px;

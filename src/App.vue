@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <div :class="[$style.logoWrapper]">
+    <div :class="$style.logoWrapper">
       <Logo :class="$style.logo"/>
       <a :class="$style.contacts" title="Contacteaza-ma" href="mailto:capatina.oxana@gmail.com">
         <b-icon
@@ -95,25 +95,24 @@ export default class App extends Vue {
   }
 
   .logoWrapper {
-    align-items:flex-start;
     padding-top: 10px;
-    display: flex;
-    justify-content: flex-end;
-
+    text-align: center;
     @include tablet {
       padding-top: 20px;
     }
   }
 
   .logo {
-    align-self: center;
-    margin: auto;
+    /*align-self: center;*/
+    /*margin: 0 auto;*/
   }
   .contacts {
     color: white;
     font-weight: bold;
     padding-right: 15px;
     opacity: 0.6;
+    position: absolute;
+    right: 0;
 
     &:hover {
       opacity: 1;
