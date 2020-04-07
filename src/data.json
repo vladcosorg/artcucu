@@ -1,19 +1,5 @@
 [
   {
-    "author": "Ruslan Rosca",
-    "title": "Portretul M.C. din seria Contele Monte Cristo",
-    "technique": "Monotipie. Tus. Penita",
-    "dimensions": "640x520mm",
-    "filename": "cristo"
-  },
-  {
-    "author": "Ruslan Rosca",
-    "title": "Ouroboros",
-    "technique": "Monotipie. Linogravura",
-    "dimensions": "300x540mm",
-    "filename": "ruslan"
-  },
-  {
     "author": "Zinaida Capatina",
     "title": "Portret",
     "technique": "Acril pe pinza",
@@ -26,6 +12,20 @@
     "technique": "Acril pe pinza",
     "dimensions": "600x650mm",
     "filename": "zina"
+  },
+  {
+    "author": "Ruslan Rosca",
+    "title": "Portretul M.C. din seria Contele Monte Cristo",
+    "technique": "Monotipie. Tus. Penita",
+    "dimensions": "640x520mm",
+    "filename": "cristo"
+  },
+  {
+    "author": "Ruslan Rosca",
+    "title": "Ouroboros",
+    "technique": "Monotipie. Linogravura",
+    "dimensions": "300x540mm",
+    "filename": "ruslan"
   },
   {
     "author": "Karen Grigorean",

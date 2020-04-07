@@ -39,11 +39,24 @@ export default class Carousel extends Vue {
 </script>
 
 <style lang="scss">
+.carousel-items {
+  .carousel-arrow.is-hovered {
+    @include mobile {
+      opacity: 0;
+    }
+    opacity: 1;
+  }
+}
+
+.mdi {
+}
 
 .mdi-chevron-left, .mdi-chevron-right {
   background-color: #5c5f63;
   mask: url("~@/assets/images/arrow.svg") no-repeat 100% 100%;
   background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
 
   &:hover {
     background-color: #86898e;
@@ -62,12 +75,20 @@ export default class Carousel extends Vue {
     background-color: transparent !important;
   }
 
+  --arrow-padding: 1.5rem;
+
+  @include fullhd {
+    @media (max-resolution: 1dppx) {
+      --arrow-padding: 30rem;
+    }
+  }
+
   .has-icons-left {
-    left: $layout-padding;
+    left: var(--arrow-padding) !important;
   }
 
   .has-icons-right {
-    right: $layout-padding;
+    right: var(--arrow-padding) !important;
   }
 }
 
@@ -83,7 +104,13 @@ export default class Carousel extends Vue {
       align-items: center;
 
       .like {
-        margin: 15px;
+        --like-margin: 5px;
+
+        @include tablet {
+          --like-margin: 10px;
+        }
+        margin-top: var(--like-margin);
+        margin-bottom: calc(var(--like-margin) * 2);
       }
     }
   }

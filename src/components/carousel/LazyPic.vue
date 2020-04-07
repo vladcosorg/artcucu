@@ -30,16 +30,13 @@
   <div :class="['container', $style.wrapper]">
     <v-lazy-image
       :srcset="srcset('jpeg')"
-      sizes="(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw"
-      :src-placeholder="image('jpeg', '_lqip')"
       :alt="item.title"
       :src="image('jpeg')"
       use-picture
     >
       <source
         type="image/webp"
-        :srcset="srcset('webp')"
-        sizes="(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw"
+        :src="image('webp')"
       >
     </v-lazy-image>
   </div>

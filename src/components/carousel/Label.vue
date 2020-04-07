@@ -53,7 +53,6 @@ export default class Label extends Vue {
 
   &Title {
     margin-top: 0.3rem;
-
     &:before {
       content: "“";
     }

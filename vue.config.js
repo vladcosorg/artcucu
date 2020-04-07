@@ -11,7 +11,7 @@ module.exports = {
       .loader('url-loader')
       .tap((options) => ({
         ...options,
-        limit: 100,
+        limit: 10000,
       }));
   },
   configureWebpack: {

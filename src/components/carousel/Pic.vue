@@ -1,12 +1,16 @@
 <style lang="scss" module>
 
 .wrapper {
-  $padding: 9px;
+  $border: 9px;
+  $padding: $border + 2px;
   overflow: hidden;
   flex: 1 1 0;
   text-align: center;
   align-self: center;
-  padding: 0 $padding $padding;
+  padding: 10px $padding $padding;
+  @include tablet {
+    padding-top: 20px;
+  }
 
   @include widescreen {
     width: 952px;
@@ -18,7 +22,7 @@
 
   img {
     max-height: 100%;
-    box-shadow: $padding $padding 4px 0 rgba(36, 38, 47, 0.32);
+    box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -29,18 +33,18 @@
 <template>
   <div :class="['container', $style.wrapper]">
     <v-lazy-image
-      :srcset="srcset('jpeg')"
-      :sizes="sizes"
       :src-placeholder="image('jpeg', '_lqip')"
       :alt="item.title"
       :src="image('jpeg')"
+      :srcset="srcset('jpeg')"
+      :sizes="sizes"
       use-picture
     >
-      <source
-        type="image/webp"
-        :srcset="srcset('webp')"
-        :sizes="sizes"
-      >
+<!--      <source-->
+<!--        type="image/webp"-->
+<!--        :srcset="srcset('webp')"-->
+<!--        :sizes="sizes"-->
+<!--      >-->
     </v-lazy-image>
   </div>
 </template>
@@ -58,7 +62,7 @@ import VLazyImage from 'v-lazy-image';
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
-  sizes = '(min-width: 1024px) and (max-width: 1216px) 960px, (min-width: 1216px) 1152px, 100vw';
+  sizes = '(min-width: 1216px) 1152px, 100vw';
 
   srcset(format: 'png' | 'jpeg' | 'webp'): string {
     const parts: string[] = [];

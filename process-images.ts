@@ -91,7 +91,7 @@ function applyResponsiveOperation(...sizes: number[]) {
       operations.push((file: sharp.Sharp, basename: string) => {
         file
           .resize(size, size, {
-            fit: 'inside',
+            fit: 'outside',
             withoutEnlargement: true,
           })
           .toFormat(format, {
@@ -152,5 +152,25 @@ compile({
       return `${basename}_lqip.jpeg`;
     },
     ...applyResponsiveOperation(1600, 1400, 1200, 1000, 800),
+  ],
+});
+
+compile({
+  glob: '+(perete|podea).jpg',
+  sharp: [
+    (file: sharp.Sharp, basename: string): string => {
+      file
+        .resize(200, 200, {
+          fit: 'inside',
+        })
+        .toFormat('jpeg', {
+          quality: 40,
+          optimiseScans: true,
+          progressive: true,
+        });
+
+      return `${basename}_lqip.jpeg`;
+    },
+    ...applyResponsiveOperation(2400, 2000, 1600, 1400, 1200, 1000, 800),
   ],
 });
