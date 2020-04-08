@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.wrapper">
+  <div :class="$style.wrapper" id="app">
     <div :class="$style.logoWrapper">
       <Logo :class="$style.logo"/>
       <a :class="$style.contacts" title="Contacteaza-ma" href="mailto:capatina.oxana@gmail.com">
