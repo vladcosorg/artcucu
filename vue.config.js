@@ -8,13 +8,20 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
+    if (process.env.NODE_ENV === 'development') {
+      config
+        .output
+        .filename('[name].[hash].js')
+        .end();
+    }
+
     config.module
       .rule('images')
       .use('url-loader')
       .loader('url-loader')
       .tap((options) => ({
         ...options,
-        limit: 10000,
+        limit: 5000,
       }));
   },
   // eslint-disable-next-line consistent-return

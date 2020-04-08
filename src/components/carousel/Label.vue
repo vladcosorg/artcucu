@@ -23,12 +23,34 @@ export default class Label extends Vue {
 <style lang="scss" module>
 .wrapper {
   background-position: top center;
-  background-image: url("~@/assets/images/podea.jpeg");
   background-size: cover;
   width: 100%;
   text-align: center;
   display: flex;
   justify-content: center;
+
+
+  @mixin podea($x1, $x2: false) {
+    @include bg('podea', $x1, $x2);
+  }
+
+  @include podea(800, 800);
+
+  @media (min-width: 800px) {
+    @include podea(800, 1600);
+  }
+
+  @media (min-width: 1000px) {
+    @include podea(1000, 2000);
+  }
+
+  @media (min-width: 1200px) {
+    @include podea(1200, 2400);
+  }
+
+  @media (min-width: 1400px) {
+    @include podea(1400);
+  }
 }
 
 .card {
@@ -53,6 +75,7 @@ export default class Label extends Vue {
 
   &Title {
     margin-top: 0.3rem;
+
     &:before {
       content: "“";
     }

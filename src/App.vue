@@ -39,59 +39,36 @@ export default class App extends Vue {
 <style lang="scss" module>
 
 .wrapper {
+
   height: calc(var(--vh, 1vh) * 100);
   background-repeat: no-repeat;
   background-position: bottom center;
-  background-image: url("./assets/images/perete.jpeg");
   background-attachment: fixed;
   background-size: cover;
   display: flex;
   flex-direction: column;
 
-  @mixin replace-text($image, $x: 50%, $y: 50%) {
-    text-indent: -99999em;
-    overflow: hidden;
-    text-align: left;
 
-    background: {
-      image: $image;
-      repeat: no-repeat;
-      position: $x $y;
-    }
+  @mixin perete($x1, $x2: false) {
+    @include bg('perete', $x1, $x2);
   }
 
-  background-image: url("./assets/images/perete_800w.jpeg"),
-  url("./assets/images/perete_lqip.jpeg");
-  background-image: image-set(
-      url("./assets/images/perete_800w.jpeg") 1x,
-      url("./assets/images/perete_1600w.jpeg") 2x
-  ), url("./assets/images/perete_lqip.jpeg");
+  @include perete(800, 800);
+
+  @media (min-width: 800px) {
+    @include perete(800, 1600);
+  }
 
   @media (min-width: 1000px) {
-    background-image: url("./assets/images/perete_1000w.jpeg"),
-    url("./assets/images/perete_lqip.jpeg");
-    background-image: image-set(
-        url("./assets/images/perete_1000w.jpeg") 1x,
-        url("./assets/images/perete_2000w.jpeg") 2x
-    ), url("./assets/images/perete_lqip.jpeg");
+    @include perete(1000, 2000);
   }
 
   @media (min-width: 1200px) {
-    background-image: url("./assets/images/perete_1200w.jpeg"),
-    url("./assets/images/perete_lqip.jpeg");
-    background-image: image-set(
-        url("./assets/images/perete_1200w.jpeg") 1x,
-        url("./assets/images/perete_2400w.jpeg") 2x
-    ), url("./assets/images/perete_lqip.jpeg");
+    @include perete(1200, 2400);
   }
 
   @media (min-width: 1400px) {
-    background-image: url("./assets/images/perete_1400w.jpeg"),
-    url("./assets/images/perete_lqip.jpeg");
-    background-image: image-set(
-        url("./assets/images/perete_1400w.jpeg") 1x,
-        url("./assets/images/perete.jpeg") 2x
-    ), url("./assets/images/perete_lqip.jpeg");
+    @include perete(1400);
   }
 
   .logoWrapper {
@@ -106,6 +83,7 @@ export default class App extends Vue {
     /*align-self: center;*/
     /*margin: 0 auto;*/
   }
+
   .contacts {
     color: white;
     font-weight: bold;
@@ -121,7 +99,7 @@ export default class App extends Vue {
 }
 
 .view {
-  height: 100%;
+  flex: 1 1 0;
 }
 
 .goo {

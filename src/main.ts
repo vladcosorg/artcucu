@@ -17,11 +17,15 @@ const root = new Vue({
   render: (h) => h(App),
 });
 
+const resize = () => {
+  document.documentElement.style.setProperty(
+    '--vh',
+    `${window.innerHeight * 0.01}px`,
+  );
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   root.$mount('#app');
-  // console.log('mounted');
-  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  window.addEventListener('resize', () => {
-    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  });
+  resize();
+  window.addEventListener('resize', resize);
 });

@@ -87,7 +87,7 @@ interface Options {
 function applyResponsiveOperation(...sizes: number[]) {
   const operations: ((file: sharp.Sharp, basename: string) => string)[] = [];
   sizes.forEach((size) => {
-    ['webp', 'jpeg'].forEach((format) => {
+    ['webp', 'jpg'].forEach((format) => {
       operations.push((file: sharp.Sharp, basename: string) => {
         file
           .resize(size, size, {
@@ -112,7 +112,7 @@ function applyJpegOperation(file: sharp.Sharp, basename: string): string {
       optimiseScans: true,
     });
 
-  return `${basename}.jpeg`;
+  return `${basename}.jpg`;
 }
 
 function applyWebpOperation(file: sharp.Sharp, basename: string): string {
@@ -149,7 +149,7 @@ compile({
           progressive: true,
         });
 
-      return `${basename}_lqip.jpeg`;
+      return `${basename}_lqip.jpg`;
     },
     ...applyResponsiveOperation(1600, 1400, 1200, 1000, 800),
   ],
