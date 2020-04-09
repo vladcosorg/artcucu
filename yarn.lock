@@ -836,6 +836,11 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@mdi/svg@^5.0.45":
+  version "5.0.45"
+  resolved "https://registry.yarnpkg.com/@mdi/svg/-/svg-5.0.45.tgz#4544b114419effd5e1373bf1f07d567c27f44818"
+  integrity sha512-JAsxPV2Um/AxZluJxNnxqgrByQT3wj7f0V0YJI632qUwiU6EDmG1D43FMHlLS5oEPjYB4meiyF4/mPDXqfICSw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -4876,14 +4881,6 @@ image-dimensions-loader@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/image-dimensions-loader/-/image-dimensions-loader-0.1.0.tgz#9f72f4d8ec72a9d0303fb7820e7fabce969d6a19"
   integrity sha512-qHgVNe4UKjFg9MkgTyNi5aMFVJWReBew5/HwYrvIGeZYhoWvO3TtxvEG8LlwwcuIdNREQiJXZzhFKwcUwT8jAw==
-  dependencies:
-    image-size "^0.3.5"
-    loader-utils "^0.2.7"
-
-image-size-loader@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/image-size-loader/-/image-size-loader-0.7.0.tgz#4b3715ec8b60404d6c3104221da55498ab6514b5"
-  integrity sha1-SzcV7ItgQE1sMQQiHaVUmKtlFLU=
   dependencies:
     image-size "^0.3.5"
     loader-utils "^0.2.7"

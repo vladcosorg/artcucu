@@ -19,6 +19,9 @@ export default class Logo extends Vue {
 
 <style lang="scss" module>
 
+.wrapper {
+  display: flex;
+}
 
 .logo {
   width: 32px;

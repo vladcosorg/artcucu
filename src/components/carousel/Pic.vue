@@ -18,25 +18,17 @@ $border: 9px;
   @include fullhd {
     width: 1144px;
   }
+
+  img[src*="base64"] {
+    filter: blur(10px);
+  }
 }
 
 img {
   max-height: 100%;
-  box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  width: auto;
 }
 
-@include tablet {
-  .landscape img {
-    width: 100%;
-  }
-
-  .portrait img {
-    height: 100%;
-  }
-}
 </style>
 
 <template>
@@ -48,6 +40,8 @@ img {
       :alt="item.title"
       :src="image('jpg')"
       use-picture
+      :width="width"
+      :height="height"
     >
       <source
         type="image/webp"
@@ -72,6 +66,10 @@ export default class Pic extends Vue {
 
   sizes = '(min-width: 1216px) 1152px, 100vw';
 
+  width = 0;
+
+  height = 0;
+
   srcset(format: 'png' | 'jpg' | 'webp'): string {
     const parts: string[] = [];
     [1800, 1600, 1400, 1200, 1000, 800].forEach((size) => {
@@ -84,13 +82,18 @@ export default class Pic extends Vue {
     return parts.join(', ');
   }
 
-  orientation(): string {
+  created() {
     // eslint-disable-next-line max-len
     // eslint-disable-next-line global-require,import/no-dynamic-require,@typescript-eslint/no-var-requires
     const dimensions = require(
       `!image-dimensions-loader!@/assets/images/gallery/${this.item.filename}.jpg`,
     );
-    return (dimensions.width / dimensions.height) > 1
+    this.width = dimensions.width;
+    this.height = dimensions.height;
+  }
+
+  orientation(): string {
+    return (this.width / this.height) > 1
       ? this.$style.landscape
       : this.$style.portrait;
   }

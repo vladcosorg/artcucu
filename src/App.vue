@@ -1,16 +1,6 @@
 <template>
   <div :class="$style.wrapper" id="app">
-    <div :class="$style.logoWrapper">
-      <Logo :class="$style.logo"/>
-      <a :class="$style.contacts" title="Contacteaza-ma" href="mailto:capatina.oxana@gmail.com">
-        <b-icon
-          icon="email-outline"
-          size="is-small"
-          style="font-size: 20px"
-        >
-        </b-icon>
-      </a>
-    </div>
+    <Header :class="$style.header"/>
     <div :class="$style.view">
       <Home/>
     </div>
@@ -20,13 +10,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Logo from '@/components/Logo.vue';
+import Header from '@/components/Header.vue';
 import Goo from '@/components/Goo.vue';
 import Home from '@/views/Home.vue';
 
 @Component({
   components: {
-    Logo,
+    Header,
     Home,
     Goo,
   },
@@ -37,7 +27,6 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss" module>
-
 .wrapper {
 
   height: calc(var(--vh, 1vh) * 100);
@@ -70,31 +59,13 @@ export default class App extends Vue {
   @media (min-width: 1400px) {
     @include perete(1400);
   }
+}
 
-  .logoWrapper {
-    padding-top: 10px;
-    text-align: center;
-    @include tablet {
-      padding-top: 20px;
-    }
-  }
-
-  .logo {
-    /*align-self: center;*/
-    /*margin: 0 auto;*/
-  }
-
-  .contacts {
-    color: white;
-    font-weight: bold;
-    padding-right: 15px;
-    opacity: 0.6;
-    position: absolute;
-    right: 0;
-
-    &:hover {
-      opacity: 1;
-    }
+.header {
+  padding-top: 10px;
+  text-align: center;
+  @include tablet {
+    padding-top: 20px;
   }
 }
 

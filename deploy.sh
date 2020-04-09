@@ -5,7 +5,7 @@ set -e
 
 # build
 npm run generate-images
-npm run build
+npm run build --modern
 
 # navigate into the build output directory
 cd dist
