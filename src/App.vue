@@ -65,8 +65,8 @@ export default class App extends Vue {
   line-height: 0;
   text-align: center;
   padding: 1rem 0;
-  @include tablet {
-    /*padding-top: 20px;*/
+  @include mobile {
+    padding: 0.5rem 0;
   }
 }
 

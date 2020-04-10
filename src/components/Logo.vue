@@ -26,7 +26,7 @@ export default class Logo extends Vue {
 .logo {
   width: 100px;
   @include mobile {
-    /*width: 22px;*/
+    width: 70px;
   }
   #fk{
     fill: white;
