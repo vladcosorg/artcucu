@@ -58,8 +58,6 @@ $padding: $border + 2px;
       :alt="item.title"
       :src="image('jpg')"
       use-picture
-      :width="width"
-      :height="height"
     >
       <source
         type="image/webp"
