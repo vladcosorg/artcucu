@@ -4,12 +4,13 @@
     :indicator-inside="false"
     :autoplay="false"
     :indicator="false"
+    animated="slide"
   >
-    <b-carousel-item v-for="(item,key) in items" :key="key">
+    <c-carousel-item v-for="(item,key) in items" :key="key">
       <Pic :item="item"/>
       <LikeButton class="like"/>
       <Label :item="item"/>
-    </b-carousel-item>
+    </c-carousel-item>
   </b-carousel>
 </template>
 
@@ -18,6 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import LikeButton from '@/components/LikeButton.vue';
 import Label from '@/components/carousel/Label.vue';
 import Pic from '@/components/carousel/Pic.vue';
+import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import data from '@/data.json';
 
@@ -26,6 +28,7 @@ import data from '@/data.json';
     LikeButton,
     Label,
     Pic,
+    CCarouselItem,
   },
 })
 export default class Carousel extends Vue {
@@ -98,6 +101,8 @@ export default class Carousel extends Vue {
   .carousel-items {
 
     .carousel-item {
+      /*position: absolute;*/
+      /*width: 100%;*/
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -114,4 +119,6 @@ export default class Carousel extends Vue {
     }
   }
 }
+
+
 </style>

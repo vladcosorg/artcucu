@@ -50,7 +50,7 @@ $padding: $border + 2px;
 </style>
 
 <template>
-  <div :class="['container', $style.wrapper]">
+  <div :class="[ $style.wrapper]">
     <v-lazy-image
       :src-placeholder="image('jpg', '_lqip')"
       :srcset="srcset('jpg')"
