@@ -1,33 +1,51 @@
 <style lang="scss" module>
 $border: 9px;
+$padding: $border + 2px;
 .wrapper {
-  $padding: $border + 2px;
-  overflow: hidden;
+  display: flex;
   flex: 1 1 0;
-  text-align: center;
-  align-self: center;
-  padding: 10px $padding $padding;
-  @include tablet {
-    padding-top: 20px;
+  align-items: center;
+  overflow: hidden;
+  @include mobile {
+    $margin: 15px;
+    margin-left: $margin !important;
+    margin-right: $margin - $padding !important;
   }
 
   @include widescreen {
-    width: 952px;
   }
 
   @include fullhd {
-    width: 1144px;
   }
 
-  img[src*="base64"] {
-    filter: blur(10px);
+
+  .picture {
+    justify-items: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: auto;
+    padding-bottom: $padding;
+    padding-right: $padding;
+    img {
+      max-height: 100%;
+      width: auto;
+      box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
+    }
   }
+
+  @include tablet {
+    .landscape img {
+      /*width: 100%;*/
+    }
+
+    .portrait img {
+      /*height: 100%;*/
+    }
+  }
+
 }
 
-img {
-  max-height: 100%;
-  width: auto;
-}
 
 </style>
 
@@ -36,7 +54,7 @@ img {
     <v-lazy-image
       :src-placeholder="image('jpg', '_lqip')"
       :srcset="srcset('jpg')"
-      :class="orientation()"
+      :class="[orientation(), $style.picture]"
       :alt="item.title"
       :src="image('jpg')"
       use-picture

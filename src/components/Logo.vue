@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LogoSvg from '@/assets/images/cucu.svg?inline';
+import LogoSvg from '@/assets/images/logo.svg?inline';
 
 @Component({
   components: {
@@ -24,11 +24,12 @@ export default class Logo extends Vue {
 }
 
 .logo {
-  width: 32px;
+  width: 100px;
   @include mobile {
-    width: 22px;
+    /*width: 22px;*/
   }
-
-  fill: white;
+  #fk{
+    fill: white;
+  }
 }
 </style>
