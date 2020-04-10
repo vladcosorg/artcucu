@@ -4,7 +4,6 @@
     :indicator-inside="false"
     :autoplay="false"
     :indicator="false"
-    animated="fade"
   >
     <b-carousel-item v-for="(item,key) in items" :key="key">
       <Pic :item="item"/>
