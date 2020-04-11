@@ -142,11 +142,8 @@ compile({
   sharp: [
     (file: sharp.Sharp, basename: string): string => {
       file
-        .blur(20)
         .toFormat('jpeg', {
           quality: 1,
-          optimiseScans: true,
-          progressive: true,
         });
 
       return `${basename}_lqip.jpg`;

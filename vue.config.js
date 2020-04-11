@@ -21,7 +21,7 @@ module.exports = {
       .loader('url-loader')
       .tap((options) => ({
         ...options,
-        limit: 5000,
+        limit: 30000,
       }));
   },
   // eslint-disable-next-line consistent-return

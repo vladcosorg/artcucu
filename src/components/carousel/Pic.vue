@@ -18,7 +18,6 @@ $padding: $border + 2px;
   @include fullhd {
   }
 
-
   .picture {
     justify-items: center;
     display: flex;
@@ -27,15 +26,29 @@ $padding: $border + 2px;
     width: auto;
     padding-bottom: $padding;
     padding-right: $padding;
+    flex-direction: column;
+
     img {
       max-height: 100%;
       width: auto;
       box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
+      flex: 1 1 0;
     }
   }
 
-  @include tablet {
-    .landscape img {
+  :global {
+    .v-lazy-image {
+      filter: blur(10px);
+    }
+
+    .v-lazy-image-loaded {
+      filter: blur(0px);
+    }
+  }
+
+  @include mobile {
+    .landscape {
+      flex-direction: row !important;
       /*width: 100%;*/
     }
 
@@ -53,16 +66,12 @@ $padding: $border + 2px;
   <div :class="[ $style.wrapper]">
     <v-lazy-image
       :src-placeholder="image('jpg', '_lqip')"
-      :srcset="srcset('jpg')"
       :class="[orientation(), $style.picture]"
       :alt="item.title"
       :src="image('jpg')"
       use-picture
     >
-      <source
-        type="image/webp"
-        :srcset="srcset('webp')"
-      >
+
     </v-lazy-image>
   </div>
 </template>
@@ -85,6 +94,10 @@ export default class Pic extends Vue {
   width = 0;
 
   height = 0;
+
+  get style() {
+    return `height: ${this.height}px`;
+  }
 
   srcset(format: 'png' | 'jpg' | 'webp'): string {
     const parts: string[] = [];

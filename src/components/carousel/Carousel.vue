@@ -81,7 +81,7 @@ export default class Carousel extends Vue {
 
   @include fullhd {
     @media (max-resolution: 1dppx) {
-      --arrow-padding: 30rem;
+      --arrow-padding: 20rem;
     }
   }
 

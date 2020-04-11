@@ -26,6 +26,7 @@ export default class Goo extends Vue {
 .goo {
   width: 100%;
   height: auto;
+  fill: #feff32;
 }
 
 .text {
