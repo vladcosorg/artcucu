@@ -4,7 +4,7 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin');
 module.exports = {
   pluginOptions: {
     webpackBundleAnalyzer: {
-      openAnalyzer: true,
+      openAnalyzer: false,
     },
   },
   chainWebpack: (config) => {

@@ -5,6 +5,7 @@ import { sync as glob } from 'glob';
 import Svgo from 'svgo';
 import filesize from 'filesize';
 import { cwd } from 'process';
+import sqip from 'sqip';
 
 const inDirPath = path.resolve('./src/graphics');
 const outDirPath = path.resolve('./src/assets/images');
@@ -61,6 +62,81 @@ function compile(options: Options) {
 
       fs.mkdirSync(dirName, { recursive: true });
 
+      if (options.posterize) {
+        const outPath = `${dirName}/${baseName}.svg`;
+        sqip({
+          input: inFilePath,
+          output: outPath,
+          width: 0,
+          plugins: [
+            {
+              name: 'primitive',
+              options: {
+                numberOfPrimitives: 8,
+                mode: 0,
+              },
+            },
+            'blur',
+            {
+              name: 'svgo',
+              options: {
+                plugins: [
+                  { removeDoctype: true },
+                  { removeXMLProcInst: true },
+                  { removeComments: true },
+                  { removeMetadata: true },
+                  { removeXMLNS: false },
+                  { removeEditorsNSData: true },
+                  { cleanupAttrs: true },
+                  { inlineStyles: true },
+                  { minifyStyles: true },
+                  { convertStyleToAttrs: true },
+                  { cleanupIDs: true },
+                  { prefixIds: true },
+                  { removeRasterImages: true },
+                  { removeUselessDefs: true },
+                  { cleanupNumericValues: true },
+                  { cleanupListOfValues: true },
+                  { convertColors: true },
+                  { removeUnknownsAndDefaults: true },
+                  { removeNonInheritableGroupAttrs: true },
+                  { removeUselessStrokeAndFill: true },
+                  { removeViewBox: false },
+                  { cleanupEnableBackground: true },
+                  { removeHiddenElems: true },
+                  { removeEmptyText: true },
+                  { convertShapeToPath: true },
+                  { moveElemsAttrsToGroup: true },
+                  { moveGroupAttrsToElems: true },
+                  { collapseGroups: true },
+                  { convertPathData: true },
+                  { convertTransform: true },
+                  { removeEmptyAttrs: true },
+                  { removeEmptyContainers: true },
+                  { mergePaths: true },
+                  { removeUnusedNS: true },
+                  { sortAttrs: true },
+                  { removeTitle: true },
+                  { removeDesc: true },
+                  { removeDimensions: false },
+                  { removeAttrs: false },
+                  { removeAttributesBySelector: false },
+                  { removeElementsByAttr: false },
+                  { addClassesToSVGElement: false },
+                  { removeStyleElement: false },
+                  { removeScriptElement: false },
+                  { addAttributesToSVGElement: false },
+                  { removeOffCanvasPaths: true },
+                  { reusePaths: true },
+                ],
+              },
+            },
+          ],
+        }).then(() => {
+          report(inFilePath, outPath);
+        });
+      }
+
       if (extNameWithoutDot === 'svg') {
         compileSvg(inFilePath, outFilePath);
         return;
@@ -73,7 +149,7 @@ function compile(options: Options) {
           const generatedOutFilePath = path.join(dirName, fileName);
 
           sharpFile.toFile(generatedOutFilePath)
-            .then((info) => report(inFilePath, generatedOutFilePath));
+            .then(() => report(inFilePath, generatedOutFilePath));
         });
       }
     });
@@ -82,6 +158,7 @@ function compile(options: Options) {
 interface Options {
   glob: string;
   sharp?: { (object: sharp.Sharp, basename: string): string }[];
+  posterize?: boolean;
 }
 
 function applyResponsiveOperation(...sizes: number[]) {
@@ -123,7 +200,11 @@ function applyWebpOperation(file: sharp.Sharp, basename: string): string {
   return `${basename}.webp`;
 }
 
-fs.rmdirSync(outDirPath, { recursive: true });
+// fs.rmdirSync(outDirPath, { recursive: true });
+compile({
+  glob: 'gallery/*.png',
+  posterize: true,
+});
 
 compile({
   glob: '**/*.svg',
@@ -140,14 +221,6 @@ compile({
 compile({
   glob: 'gallery/*.+(jpg|jpeg|png)',
   sharp: [
-    (file: sharp.Sharp, basename: string): string => {
-      file
-        .toFormat('jpeg', {
-          quality: 1,
-        });
-
-      return `${basename}_lqip.jpg`;
-    },
     ...applyResponsiveOperation(1600, 1400, 1200, 1000, 800),
   ],
 });

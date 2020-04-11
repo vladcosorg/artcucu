@@ -65,13 +65,17 @@ $padding: $border + 2px;
 <template>
   <div :class="[ $style.wrapper]">
     <v-lazy-image
-      :src-placeholder="image('jpg', '_lqip')"
+      :src-placeholder="placeholder"
+      :srcset="srcset('jpg')"
       :class="[orientation(), $style.picture]"
       :alt="item.title"
       :src="image('jpg')"
       use-picture
     >
-
+      <source
+        type="image/webp"
+        :srcset="srcset('webp')"
+      >
     </v-lazy-image>
   </div>
 </template>
@@ -127,9 +131,21 @@ export default class Pic extends Vue {
       : this.$style.portrait;
   }
 
-  image(format: 'png' | 'jpg' | 'webp', suffix = ''): string {
+  get placeholder() {
     // eslint-disable-next-line global-require,import/no-dynamic-require
-    return require(`@/assets/images/gallery/${this.item.filename}${suffix}.${format}`);
+    return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
+  }
+
+  image(format: 'png' | 'jpg' | 'webp' | 'svg', suffix = ''): string {
+    // eslint-disable-next-line global-require,import/no-dynamic-require
+    let finalFormat: string = format;
+
+    if (format === 'svg') {
+      finalFormat = 'svg';
+    }
+
+    // eslint-disable-next-line global-require,import/no-dynamic-require
+    return require(`@/assets/images/gallery/${this.item.filename}${suffix}.${finalFormat}`);
   }
 }
 </script>
