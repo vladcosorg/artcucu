@@ -1,4 +1,4 @@
-<template class="dawdaw">
+<template>
   <span class="cucu-love">
       <HeartStrokeIcon
         :class="['cucu-love-inactive', animation, {'cucu-love-fly': isActive} ]"
@@ -12,9 +12,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import HeartStrokeIcon from '@/assets/images/heart-stroke.svg?inline';
 import HeartFullIcon from '@/assets/images/heart-full.svg?inline';
+import {
+  auth,
+  likesCollection,
+  picCollection,
+} from '@/firebase';
+import * as firebase from 'firebase/app';
 
 @Component({
   components: {
@@ -23,13 +29,59 @@ import HeartFullIcon from '@/assets/images/heart-full.svg?inline';
   },
 })
 export default class LoveButton extends Vue {
+  @Prop() id!: string;
+
   private isActive = false;
 
   private runAnimation = false;
 
+  private currentUser!: firebase.User | null;
+
+  created() {
+    auth.onAuthStateChanged((user) => {
+      this.currentUser = user;
+      likesCollection.doc(this.docId)
+        .get()
+        .then((doc) => {
+          this.isActive = doc.exists;
+        });
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  get docId() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return `${this.currentUser!.uid}_${this.id}`;
+  }
+
+
+  like() {
+    likesCollection.doc(this.docId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          return;
+        }
+        likesCollection.doc(this.docId)
+          .set({
+            picId: this.id,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            userId: this.currentUser!.uid,
+          })
+          .then(() => {
+            const increment = firebase.firestore.FieldValue.increment(1);
+            // update post likes
+            picCollection.doc(this.id)
+              .set({
+                likes: increment,
+              });
+          });
+      });
+  }
+
   activateButton() {
     this.isActive = !this.isActive;
-    // this.runAnimation = true;
+    this.like();
   }
 
   get animation() {
@@ -61,6 +113,7 @@ export default class LoveButton extends Vue {
 }
 
 .cucu-love {
+  $default-color: #5c5f63;
   $icon-width: 30px;
   position: relative;
   line-height: 0;
@@ -75,19 +128,26 @@ export default class LoveButton extends Vue {
   svg {
     cursor: pointer;
     width: $icon-width;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  &-inactive {
+  &-inactive, &-inactive:focus {
     position: absolute;
     z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    fill: #5c5f63;
+    fill: $default-color;
   }
 
   &-inactive:hover, &-active {
     fill: #9E3E3B;
+  }
+
+  @include no-hover-support {
+    &-inactive:hover {
+      fill: $default-color;
+    }
   }
 
   &-active {
@@ -100,7 +160,7 @@ export default class LoveButton extends Vue {
     opacity: 0;
   }
 
-  &-fly + &-active{
+  &-fly + &-active {
     visibility: visible;
   }
 }

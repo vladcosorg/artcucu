@@ -8,7 +8,7 @@
   >
     <c-carousel-item v-for="(item,key) in items" :key="key">
       <Pic :item="item"/>
-      <LikeButton class="like"/>
+      <LikeButton class="like" :id="item.filename"/>
       <Label :item="item"/>
     </c-carousel-item>
   </b-carousel>

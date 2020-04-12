@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import firebaseApp from '@/firebase';
+import VueFirestore from 'vue-firestore';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
@@ -6,15 +8,22 @@ import Carousel from 'buefy/src/components/carousel';
 // @ts-ignore
 import Icon from 'buefy/src/components/icon';
 import App from './App.vue';
+
 import './assets/scss/app.scss';
 import 'webp-in-css/polyfill';
 
 Vue.use(Carousel);
 Vue.use(Icon);
-Vue.config.productionTip = false;
+Vue.use(VueFirestore);
 
+Vue.config.productionTip = false;
 const root = new Vue({
   render: (h) => h(App),
+  // firestore() {
+  //   return {
+  //     lol: firebaseApp.firestore().collection('lol'),
+  //   };
+  // },
 });
 
 const resize = () => {

@@ -40,3 +40,17 @@ $colors: map-merge($colors, $addColors);
     ), $gradient;
   }
 }
+
+@mixin hover-support {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin no-hover-support {
+  @media (hover: none) {
+    @content;
+  }
+}
