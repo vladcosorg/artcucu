@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import firebaseApp from '@/firebase';
 import VueFirestore from 'vue-firestore';
+import VueAnalytics from 'vue-analytics';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
@@ -15,6 +16,11 @@ import 'webp-in-css/polyfill';
 Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueFirestore);
+Vue.use(VueAnalytics, {
+  id: '228830496',
+  sendHitTask: process.env.NODE_ENV === 'production',
+});
+
 
 Vue.config.productionTip = false;
 const root = new Vue({
