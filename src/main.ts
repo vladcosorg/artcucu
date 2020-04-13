@@ -2,6 +2,7 @@ import Vue from 'vue';
 import firebaseApp from '@/firebase';
 import VueFirestore from 'vue-firestore';
 import VueAnalytics from 'vue-ua';
+import Cloudinary, { CldImage, CldTransformation, CldContext } from 'cloudinary-vue';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
@@ -15,6 +16,13 @@ import 'webp-in-css/polyfill';
 
 Vue.use(Carousel);
 Vue.use(Icon);
+Vue.use(Cloudinary, {
+  components: {
+    CldImage,
+    CldTransformation,
+    CldContext,
+  },
+});
 Vue.use(VueFirestore);
 Vue.use(VueAnalytics, {
   appName: 'artcucu', // Mandatory
