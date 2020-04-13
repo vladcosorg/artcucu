@@ -162,7 +162,7 @@ export default class LoveButton extends Vue {
     visibility: hidden;
   }
 
-  &-fly:hover {
+  &-fly {
     transition: all 0.5s ease-out;
     width: $icon-width*2 !important;
     opacity: 0;
