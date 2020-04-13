@@ -11,3 +11,4 @@ declare module '*.svg?inline' {
 }
 
 declare module 'vue-firestore';
+declare module 'vue-ua';

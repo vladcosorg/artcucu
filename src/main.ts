@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import firebaseApp from '@/firebase';
 import VueFirestore from 'vue-firestore';
-import VueAnalytics from 'vue-analytics';
+import VueAnalytics from 'vue-ua';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
@@ -17,8 +17,9 @@ Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueFirestore);
 Vue.use(VueAnalytics, {
-  id: '228830496',
-  sendHitTask: process.env.NODE_ENV === 'production',
+  appName: 'artcucu', // Mandatory
+  appVersion: '1', // Mandatory
+  trackingId: '228830496',
 });
 
 
