@@ -60,22 +60,30 @@ export default class LoveButton extends Vue {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          return;
+          likesCollection.doc(this.docId)
+            .delete()
+            .then(() => {
+              const decrement = firebase.firestore.FieldValue.increment(-1);
+              picCollection.doc(this.id)
+                .set({
+                  likes: decrement,
+                }, { merge: true });
+            });
+        } else {
+          likesCollection.doc(this.docId)
+            .set({
+              picId: this.id,
+              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+              userId: this.currentUser!.uid,
+            })
+            .then(() => {
+              const increment = firebase.firestore.FieldValue.increment(1);
+              picCollection.doc(this.id)
+                .set({
+                  likes: increment,
+                }, { merge: true });
+            });
         }
-        likesCollection.doc(this.docId)
-          .set({
-            picId: this.id,
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            userId: this.currentUser!.uid,
-          })
-          .then(() => {
-            const increment = firebase.firestore.FieldValue.increment(1);
-            // update post likes
-            picCollection.doc(this.id)
-              .set({
-                likes: increment,
-              });
-          });
       });
   }
 
@@ -131,7 +139,7 @@ export default class LoveButton extends Vue {
     -webkit-tap-highlight-color: transparent;
   }
 
-  &-inactive, &-inactive:focus {
+  &-inactive {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -154,10 +162,11 @@ export default class LoveButton extends Vue {
     visibility: hidden;
   }
 
-  &-fly {
+  &-fly:hover {
     transition: all 0.5s ease-out;
     width: $icon-width*2 !important;
     opacity: 0;
+    fill: #9E3E3B;
   }
 
   &-fly + &-active {
