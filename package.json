@@ -12,7 +12,7 @@
     "@mdi/svg": "^5.0.45",
     "buefy": "^0.8.0",
     "bulma": "^0.7",
-    "cloudinary-vue": "^1.0.1",
+    "cloudinary-core": "^2.8.2",
     "core-js": "^3.6.4",
     "filesize": "^6.1.0",
     "firebase": "^7.14.0",
@@ -32,8 +32,7 @@
     "vue-firestore": "^0.3.30",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
-    "vue-ua": "^1.7.0",
-    "webp-in-css": "^0.3.0"
+    "vue-ua": "^1.7.0"
   },
   "devDependencies": {
     "@types/node": "^13.9.8",
@@ -79,10 +78,7 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {},
-      "webp-in-css/plugin": {
-        "modules": true
-      }
+      "autoprefixer": {}
     }
   },
   "browserslist": [

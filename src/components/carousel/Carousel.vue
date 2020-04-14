@@ -99,10 +99,9 @@ export default class Carousel extends Vue {
   height: 100%;
 
   .carousel-items {
+    overflow: visible !important;
 
     .carousel-item {
-      /*position: absolute;*/
-      /*width: 100%;*/
       display: flex;
       flex-direction: column;
       align-items: center;

@@ -3356,7 +3356,7 @@ clone@^2.1.1:
   resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
   integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
 
-cloudinary-core@^2.6.3:
+cloudinary-core@^2.6.3, cloudinary-core@^2.8.2:
   version "2.8.2"
   resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.8.2.tgz#355faf986ded19358a65ddc28ad29344c1de0902"
   integrity sha512-nV1lhEXlqNhgnbnzsDzbrNUAkP8H9J5RuBareRlWyb8tKx/94DvG/kXWrSlC8XNB3uKfiwxOudOnRdjsEnjBgA==
@@ -3385,16 +3385,6 @@ cloudinary-vue@1.0.0:
   dependencies:
     cloudinary-core "^2.6.3"
     cloudinary-video-player "^1.1.1"
-    vue "^2.6.10"
-
-cloudinary-vue@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/cloudinary-vue/-/cloudinary-vue-1.0.1.tgz#4b0d3fb28f42ad5e494c7272e77ec447ab2df168"
-  integrity sha512-g322hWhWQgBPJQReTb4rGyn6Ax1iw/4Hbrzw4yvdllJRTNt00O7jEtS3u8u9RLuswn2egjN3n8kodLEeGBLugA==
-  dependencies:
-    cloudinary-core "^2.6.3"
-    cloudinary-video-player "^1.1.1"
-    core-js "2.6.9"
     vue "^2.6.10"
 
 coa@^2.0.2:
@@ -3639,11 +3629,6 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.4:
   dependencies:
     browserslist "^4.8.3"
     semver "7.0.0"
-
-core-js@2.6.9:
-  version "2.6.9"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.9.tgz#6b4b214620c834152e179323727fc19741b084f2"
-  integrity sha512-HOpZf6eXmnl7la+cUdMnLvUxKNqLUzJvgIziQ0DiF3JwSImNphIqdGqzj6hIKyX04MmV0poclQ7+wjWvxQyR2A==
 
 core-js@3.6.4, core-js@^3.6.4:
   version "3.6.4"
@@ -8823,7 +8808,7 @@ postcss@^5.2.17:
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.17, postcss@^7.0.23, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
+postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.16, postcss@^7.0.23, postcss@^7.0.27, postcss@^7.0.5, postcss@^7.0.6:
   version "7.0.27"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.27.tgz#cc67cdc6b0daa375105b7c424a85567345fc54d9"
   integrity sha512-WuQETPMcW9Uf1/22HWUWP9lgsIC+KEHg2kozMflKjbeUtw9ujvFX6QmIfozaErDkmLWS9WEnEdEe6Uo9/BNTdQ==
@@ -11424,13 +11409,6 @@ webfontloader@^1.6.28:
   version "1.6.28"
   resolved "https://registry.yarnpkg.com/webfontloader/-/webfontloader-1.6.28.tgz#db786129253cb6e8eae54c2fb05f870af6675bae"
   integrity sha1-23hhKSU8tujq5UwvsF+HCvZnW64=
-
-webp-in-css@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/webp-in-css/-/webp-in-css-0.3.0.tgz#7f91d97c4a4c450e49e652ba731f00a423d0ef5c"
-  integrity sha512-0Me3Bjx1mAmP1YopizGbcIDI2I6NPiKfkH04WsdXvtC8HQzp3r0a6NmscgawqeNd1fSFAHiUefbxW2JhBFbzEw==
-  dependencies:
-    postcss "^7.0.17"
 
 webpack-bundle-analyzer@^3.6.0:
   version "3.6.1"

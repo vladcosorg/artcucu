@@ -1,82 +1,45 @@
 <style lang="scss" module>
 $border: 9px;
 $padding: $border + 2px;
+
 .wrapper {
-  display: flex;
   flex: 1 1 0;
-  align-items: center;
-  overflow: hidden;
-  @include mobile {
-    $margin: 15px;
-    margin-left: $margin !important;
-    margin-right: $margin - $padding !important;
-  }
-
-  @include widescreen {
-  }
-
-  @include fullhd {
-  }
-
-  .picture {
-    justify-items: center;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: auto;
-    padding-bottom: $padding;
-    padding-right: $padding;
-    flex-direction: column;
-
-    img {
-      max-height: 100%;
-      width: auto;
-      box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
-      flex: 1 1 0;
-    }
-  }
-
-  :global {
-    .v-lazy-image {
-      filter: blur(10px);
-    }
-
-    .v-lazy-image-loaded {
-      filter: blur(0px);
-    }
-  }
-
-  @include mobile {
-    .landscape {
-      flex-direction: row !important;
-      /*width: 100%;*/
-    }
-
-    .portrait img {
-      /*height: 100%;*/
-    }
-  }
-
+  min-height: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0 $padding $padding $padding;
 }
 
+.picture {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  max-height: 100%;
+  box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
+}
 
+:global {
+  .v-lazy-image {
+    transition: 0.3s filter linear;
+    filter: blur(10px);
+  }
+
+  .v-lazy-image-loaded {
+    filter: blur(0);
+  }
+}
 </style>
 
 <template>
   <div :class="[ $style.wrapper]">
     <v-lazy-image
-      :src-placeholder="placeholder"
-      :srcset="srcset('jpg')"
-      :class="[orientation(), $style.picture]"
+      :class="$style.picture"
+      :src="img"
+      :srcset="srcset"
+      :sizes="sizes"
       :alt="item.title"
-      :src="image('jpg')"
-      use-picture
-    >
-      <source
-        type="image/webp"
-        :srcset="srcset('webp')"
-      >
-    </v-lazy-image>
+      :src-placeholder="placeholder"
+    />
   </div>
 </template>
 
@@ -84,6 +47,8 @@ $padding: $border + 2px;
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import VLazyImage from 'v-lazy-image';
+import cl from '@/cloudinary';
+import { Transformation } from 'cloudinary-core';
 
 @Component({
   components: {
@@ -93,24 +58,40 @@ import VLazyImage from 'v-lazy-image';
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
-  sizes = '(min-width: 1216px) 1152px, 100vw';
+  sizes = '100vw';
 
   width = 0;
 
   height = 0;
 
+  version = 0;
+
+  loaded = false;
+
   get style() {
     return `height: ${this.height}px`;
   }
 
-  srcset(format: 'png' | 'jpg' | 'webp'): string {
+  get img() {
+    return this.cloudinaryImage();
+  }
+
+  cloudinaryImage(options: Transformation.Options = {}) {
+    return cl.url(
+      `v${this.version}/artcucu/graphics/gallery/${this.item.filename}.png`,
+      {
+        quality: 'auto:low',
+        fetchFormat: 'auto',
+        crop: 'fit',
+        ...options,
+      },
+    );
+  }
+
+  get srcset(): string {
     const parts: string[] = [];
-    [1800, 1600, 1400, 1200, 1000, 800].forEach((size) => {
-      let prefix = '';
-      if (size < 1800) {
-        prefix = `_${size}w`;
-      }
-      parts.push(`${this.image(format, prefix)} ${size}w`);
+    [1800, 1600, 1400, 1200, 1000, 800].forEach((width) => {
+      parts.push(`${this.cloudinaryImage({ width })} ${width}w`);
     });
     return parts.join(', ');
   }
@@ -121,8 +102,10 @@ export default class Pic extends Vue {
     const dimensions = require(
       `!image-dimensions-loader!@/assets/images/gallery/${this.item.filename}.jpg`,
     );
+
     this.width = dimensions.width;
     this.height = dimensions.height;
+    this.version = dimensions.bytes;
   }
 
   orientation(): string {
@@ -134,18 +117,6 @@ export default class Pic extends Vue {
   get placeholder() {
     // eslint-disable-next-line global-require,import/no-dynamic-require
     return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
-  }
-
-  image(format: 'png' | 'jpg' | 'webp' | 'svg', suffix = ''): string {
-    // eslint-disable-next-line global-require,import/no-dynamic-require
-    let finalFormat: string = format;
-
-    if (format === 'svg') {
-      finalFormat = 'svg';
-    }
-
-    // eslint-disable-next-line global-require,import/no-dynamic-require
-    return require(`@/assets/images/gallery/${this.item.filename}${suffix}.${finalFormat}`);
   }
 }
 </script>

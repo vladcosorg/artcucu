@@ -24,19 +24,21 @@ $addColors: (
 $colors: map-merge($colors, $addColors);
 
 @import "~bulma/sass/utilities/all";
-
+@function cdn($name, $size){
+  @return "http://res.cloudinary.com/dirycjknd/image/upload/c_fit,f_auto,q_auto,w_#{$size}/artcucu/graphics/#{$name}.jpg";
+}
 @mixin bg($name, $x1, $x2: false) {
   $gradient: linear-gradient(to bottom, #878787, #bdbdbd);
-  background-image: url("~@/assets/images/#{$name}_#{$x1}w.jpg"), $gradient;
+  background-image: url(cdn($name, $x1)), $gradient;
   @if ($x2) {
     background-image: image-set(
-                    url("~@/assets/images/#{$name}_#{$x1}w.jpg") 1x,
-                    url("~@/assets/images/#{$name}_#{$x2}w.jpg") 2x
+                    url(cdn($name, $x1)) 1x,
+                    url(cdn($name, $x2)) 2x
     ), $gradient;
   } @else {
     background-image: image-set(
-                    url("~@/assets/images/#{$name}_#{$x1}w.jpg") 1x,
-                    url("~@/assets/images/#{$name}.jpg") 2x
+                    url(cdn($name, $x1)) 1x,
+                    url(cdn($name, $x1)) 2x
     ), $gradient;
   }
 }
