@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   pluginOptions: {
     webpackBundleAnalyzer: {
-      openAnalyzer: true,
+      openAnalyzer: false,
     },
   },
   chainWebpack: (config) => {
