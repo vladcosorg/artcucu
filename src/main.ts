@@ -1,20 +1,21 @@
 import Vue from 'vue';
-import firebaseApp from '@/firebase';
 import VueFirestore from 'vue-firestore';
 import VueAnalytics from 'vue-ua';
-// import Cloudinary, { CldImage, CldTransformation, CldContext } from 'cloudinary-vue';
+import VueRouter from 'vue-router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Icon from 'buefy/src/components/icon';
+import router from './router';
 import App from './App.vue';
 
 import './assets/scss/app.scss';
 
 Vue.use(Carousel);
 Vue.use(Icon);
+Vue.use(VueRouter);
 
 Vue.use(VueFirestore);
 Vue.use(VueAnalytics, {
@@ -26,6 +27,7 @@ Vue.use(VueAnalytics, {
 
 Vue.config.productionTip = false;
 const root = new Vue({
+  router,
   render: (h) => h(App),
   // firestore() {
   //   return {

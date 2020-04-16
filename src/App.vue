@@ -2,7 +2,7 @@
   <div :class="$style.wrapper" id="app">
     <Header :class="$style.header"/>
     <div :class="$style.view">
-      <Home/>
+      <router-view></router-view>
     </div>
     <Goo :class="$style.goo"/>
   </div>

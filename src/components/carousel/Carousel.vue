@@ -5,6 +5,8 @@
     :autoplay="false"
     :indicator="false"
     animated="slide"
+    @change="slide = $event"
+    :value="slide"
   >
     <c-carousel-item v-for="(item,key) in items" :key="key">
       <Pic :item="item"/>
@@ -16,7 +18,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import LikeButton from '@/components/LikeButton.vue';
 import Label from '@/components/carousel/Label.vue';
 import Pic from '@/components/carousel/Pic.vue';
 import CCarouselItem from '@/components/carousel/CarouselItem.vue';
@@ -25,7 +26,7 @@ import data from '@/data.json';
 
 @Component({
   components: {
-    LikeButton,
+    LikeButton: () => import(/* webpackChunkName: "like" */'@/components/LikeButton.vue'),
     Label,
     Pic,
     CCarouselItem,
@@ -34,8 +35,28 @@ import data from '@/data.json';
 export default class Carousel extends Vue {
   items!: CarouselItem[];
 
+  slideMap: string[] = [];
+
+  get slide() {
+    const { id } = this.$route.params;
+    const index = this.slideMap.indexOf(id);
+
+    if (index < 0) {
+      return 0;
+    }
+
+    return this.slideMap.indexOf(this.$route.params.id);
+  }
+
+  set slide(id: number) {
+    this.$router.push({
+      path: `/gallery/${this.slideMap[id]}`,
+    });
+  }
+
   created() {
     this.items = data;
+    this.slideMap = this.items.map((item: CarouselItem) => item.filename);
   }
 }
 </script>
