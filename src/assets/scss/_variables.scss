@@ -24,7 +24,7 @@ $colors: map-merge($colors, $addColors);
 
 @import "~bulma/sass/utilities/all";
 @function cdn($name, $size) {
-  @return "http://res.cloudinary.com/dirycjknd/image/upload/c_fit,f_auto,q_auto,w_#{$size}/artcucu/graphics/#{$name}.jpg";
+  @return "https://res.cloudinary.com/dirycjknd/image/upload/c_fit,f_auto,q_auto,w_#{$size}/artcucu/graphics/#{$name}.jpg";
 }
 
 @mixin bg($name, $x1, $x2: false) {
