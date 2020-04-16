@@ -15,7 +15,8 @@
     "types": [
       "webpack-env",
       "node",
-      "sharp"
+      "sharp",
+      "vue-meta"
     ],
     "paths": {
       "@/*": [

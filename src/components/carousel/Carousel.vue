@@ -23,6 +23,8 @@ import Pic from '@/components/carousel/Pic.vue';
 import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import data from '@/data.json';
+import { MetaInfo } from 'vue-meta';
+import cl from '@/cloudinary';
 
 @Component({
   components: {
@@ -31,11 +33,42 @@ import data from '@/data.json';
     Pic,
     CCarouselItem,
   },
+  metaInfo(this: Carousel): MetaInfo {
+    return {
+      title: this.items[this.slide].title,
+      titleTemplate: '%s | ArtCucu - Stai Acasa si Admira',
+      meta: [
+        {
+          property: 'og:title',
+          content: this.items[this.slide].title + ' | ArtCucu - Stai Acasa si Admira',
+        },
+        {
+          property: 'og:url',
+          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}`,
+        },
+        {
+          property: 'og:image',
+          content: cl.url(
+            `artcucu/graphics/gallery/${this.currentSlide.filename}.png`,
+            {
+              quality: 'auto:low',
+              fetchFormat: 'auto',
+              crop: 'fit',
+            },
+          ),
+        },
+      ]
+    }
+  }
 })
 export default class Carousel extends Vue {
   items!: CarouselItem[];
 
   slideMap: string[] = [];
+
+  get currentSlide() {
+    return this.items[this.slide];
+  }
 
   get slide() {
     const { id } = this.$route.params;

@@ -10,9 +10,14 @@ import Carousel from 'buefy/src/components/carousel';
 import Icon from 'buefy/src/components/icon';
 import router from './router';
 import App from './App.vue';
+import VueMeta from 'vue-meta';
 
 import './assets/scss/app.scss';
 
+Vue.use(VueMeta, {
+  // optional pluginOptions
+  refreshOnceOnNavigation: true,
+});
 Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueRouter);
