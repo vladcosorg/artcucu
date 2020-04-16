@@ -44,7 +44,7 @@ import cl from '@/cloudinary';
         },
         {
           property: 'og:url',
-          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}`,
+          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
         },
         {
           property: 'og:image',
