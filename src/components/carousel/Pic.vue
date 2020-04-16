@@ -47,7 +47,7 @@ $padding: $border + 2px;
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import VLazyImage from 'v-lazy-image';
-import url from '@/cloudinary';
+import cl from '@/cloudinary';
 import { Transformation } from 'cloudinary-core';
 
 @Component({
@@ -90,7 +90,7 @@ export default class Pic extends Vue {
   }
 
   cloudinaryImage(options: Transformation.Options = {}) {
-    return url(
+    return cl.url(
       `v${this.version}/artcucu/graphics/gallery/${this.item.filename}.png`,
       {
         quality: 'auto:low',
