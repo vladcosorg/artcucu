@@ -104,7 +104,7 @@ export default class Pic extends Vue {
   created() {
     // eslint-disable-next-line max-len,@typescript-eslint/no-var-requires
     const dimensions = require(
-      `!image-dimensions-loader!@/assets/images/gallery/${this.item.filename}.jpg`,
+      `!image-dimensions-loader!@/graphics/gallery/${this.item.filename}.png`,
     );
 
     this.width = dimensions.width;
