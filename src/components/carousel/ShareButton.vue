@@ -1,7 +1,7 @@
 <template>
   <a
-    :href="shareUrl"
-    target="_blank" :class="$style.link">
+    :class="$style.link"
+    :href="shareUrl" target="_blank">
     <Button :class="$style.button"/>
   </a>
 </template>

@@ -132,9 +132,10 @@ function compile(options: Options) {
               },
             },
           ],
-        }).then(() => {
-          report(inFilePath, outPath);
-        });
+        })
+          .then(() => {
+            report(inFilePath, outPath);
+          });
       }
 
       if (extNameWithoutDot === 'svg') {

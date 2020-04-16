@@ -1,5 +1,5 @@
 <template>
-<Carousel/>
+  <Carousel/>
 </template>
 
 <script>

@@ -23,6 +23,7 @@ export default class Goo extends Vue {
 .wrapper {
   /*position: relative;*/
 }
+
 .goo {
   width: 100%;
   height: auto;

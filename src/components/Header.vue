@@ -3,26 +3,26 @@
     <Logo :class="$style.logo"/>
     <div :class="$style.socialWrapper">
       <a
-        target="_blank"
         :class="$style.contacts"
-        title="Contacteaza-ma pe e-mail"
         href="mailto:capatina.oxana@gmail.com"
+        target="_blank"
+        title="Contacteaza-ma pe e-mail"
       >
         <InstagramIcon :class="$style.contactIcon"/>
       </a>
       <a
-        target="_blank"
         :class="$style.contacts"
-        title="Contacteaza-ma pe Instagram"
         href="https://www.instagram.com/art.cucu/"
+        target="_blank"
+        title="Contacteaza-ma pe Instagram"
       >
         <EmailIcon :class="$style.contactIcon"/>
       </a>
       <a
-        target="_blank"
         :class="$style.contacts"
-        title="Contacteaza-ma pe Facebook"
         href="https://www.facebook.com/Artcucu-168904146983848/"
+        target="_blank"
+        title="Contacteaza-ma pe Facebook"
       >
         <FacebookIcon :class="$style.contactIcon"/>
       </a>
@@ -57,13 +57,15 @@ export default class App extends Vue {
 <style lang="scss" module>
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr auto 1fr ;
+  grid-template-columns: 1fr auto 1fr;
   justify-items: center;
   align-items: center;
 }
+
 .logo {
- grid-column-start: 2;
+  grid-column-start: 2;
 }
+
 .socialWrapper {
   margin-left: auto;
 }

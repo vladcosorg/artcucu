@@ -12,7 +12,7 @@
 
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import ShareButton from '@/components/carousel/ShareButton.vue';
 

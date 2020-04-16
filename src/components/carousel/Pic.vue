@@ -33,21 +33,21 @@ $padding: $border + 2px;
 <template>
   <div :class="[ $style.wrapper]">
     <v-lazy-image
-      :class="$style.picture"
-      :src="img"
-      :srcset="srcset"
-      :sizes="sizes"
       :alt="item.title"
+      :class="$style.picture"
+      :sizes="sizes"
+      :src="img"
       :src-placeholder="placeholder"
+      :srcset="srcset"
     />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import VLazyImage from 'v-lazy-image';
-import cl from '@/cloudinary';
+import url from '@/cloudinary';
 import { Transformation } from 'cloudinary-core';
 
 @Component({
@@ -76,8 +76,21 @@ export default class Pic extends Vue {
     return this.cloudinaryImage();
   }
 
+  get srcset(): string {
+    const parts: string[] = [];
+    [1800, 1600, 1400, 1200, 1000, 800].forEach((width) => {
+      parts.push(`${this.cloudinaryImage({ width })} ${width}w`);
+    });
+    return parts.join(', ');
+  }
+
+  get placeholder() {
+    // eslint-disable-next-line max-len,@typescript-eslint/no-var-requires
+    return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
+  }
+
   cloudinaryImage(options: Transformation.Options = {}) {
-    return cl.url(
+    return url(
       `v${this.version}/artcucu/graphics/gallery/${this.item.filename}.png`,
       {
         quality: 'auto:low',
@@ -88,17 +101,8 @@ export default class Pic extends Vue {
     );
   }
 
-  get srcset(): string {
-    const parts: string[] = [];
-    [1800, 1600, 1400, 1200, 1000, 800].forEach((width) => {
-      parts.push(`${this.cloudinaryImage({ width })} ${width}w`);
-    });
-    return parts.join(', ');
-  }
-
   created() {
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line global-require,import/no-dynamic-require,@typescript-eslint/no-var-requires
+    // eslint-disable-next-line max-len,@typescript-eslint/no-var-requires
     const dimensions = require(
       `!image-dimensions-loader!@/assets/images/gallery/${this.item.filename}.jpg`,
     );
@@ -112,11 +116,6 @@ export default class Pic extends Vue {
     return (this.width / this.height) > 1
       ? this.$style.landscape
       : this.$style.portrait;
-  }
-
-  get placeholder() {
-    // eslint-disable-next-line global-require,import/no-dynamic-require
-    return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
   }
 }
 </script>

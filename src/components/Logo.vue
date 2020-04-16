@@ -1,5 +1,5 @@
 <template>
-    <LogoSvg :class="$style.logo"/>
+  <LogoSvg :class="$style.logo"/>
 </template>
 
 
@@ -28,7 +28,8 @@ export default class Logo extends Vue {
   @include mobile {
     width: 70px;
   }
-  #fk{
+
+  #fk {
     fill: white;
   }
 }

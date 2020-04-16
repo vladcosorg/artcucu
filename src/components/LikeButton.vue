@@ -12,14 +12,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import HeartStrokeIcon from '@/assets/images/heart-stroke.svg?inline';
 import HeartFullIcon from '@/assets/images/heart-full.svg?inline';
-import {
-  auth,
-  likesCollection,
-  picCollection,
-} from '@/firebase';
+import { auth, likesCollection, picCollection } from '@/firebase';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -37,6 +33,24 @@ export default class LoveButton extends Vue {
 
   private currentUser!: firebase.User | null;
 
+  // eslint-disable-next-line class-methods-use-this
+  get docId() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return `${this.currentUser!.uid}_${this.id}`;
+  }
+
+  get animation() {
+    if (!this.runAnimation) {
+      return '';
+    }
+
+    if (!this.isActive) {
+      return 'animated rubberBand';
+    }
+
+    return 'animated heartBeat';
+  }
+
   created() {
     auth.onAuthStateChanged((user) => {
       this.currentUser = user;
@@ -47,13 +61,6 @@ export default class LoveButton extends Vue {
         });
     });
   }
-
-  // eslint-disable-next-line class-methods-use-this
-  get docId() {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return `${this.currentUser!.uid}_${this.id}`;
-  }
-
 
   like() {
     likesCollection.doc(this.docId)
@@ -90,18 +97,6 @@ export default class LoveButton extends Vue {
   activateButton() {
     this.isActive = !this.isActive;
     this.like();
-  }
-
-  get animation() {
-    if (!this.runAnimation) {
-      return '';
-    }
-
-    if (!this.isActive) {
-      return 'animated rubberBand';
-    }
-
-    return 'animated heartBeat';
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-    <div v-if="isActive" class="carousel-item">
-      <slot/>
-    </div>
+  <div class="carousel-item" v-if="isActive">
+    <slot/>
+  </div>
 </template>
 
 <script>

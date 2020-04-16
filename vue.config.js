@@ -6,7 +6,7 @@ const path = require('path');
 module.exports = {
   pluginOptions: {
     webpackBundleAnalyzer: {
-      openAnalyzer: false,
+      openAnalyzer: true,
     },
   },
   chainWebpack: (config) => {
@@ -50,7 +50,11 @@ module.exports = {
             // Required - The path to the webpack-outputted app to prerender.
             staticDir: config.output.path,
             // Required - Routes to render.
-            routes: ['/'],
+            routes: [
+              '/',
+              ...require('./src/data.json')
+                .map((item) => `/gallery/${item.filename}`)
+            ],
           }),
         ],
       };

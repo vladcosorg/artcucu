@@ -1,16 +1,16 @@
 <template>
   <b-carousel
-    class="cucu-carousel"
-    :indicator-inside="false"
     :autoplay="false"
     :indicator="false"
-    animated="slide"
-    @change="slide = $event"
+    :indicator-inside="false"
     :value="slide"
+    @change="slide = $event"
+    animated="slide"
+    class="cucu-carousel"
   >
-    <c-carousel-item v-for="(item,key) in items" :key="key">
+    <c-carousel-item :key="key" v-for="(item,key) in items">
       <Pic :item="item"/>
-      <LikeButton class="like" :id="item.filename"/>
+      <LikeButton :id="item.filename" class="like"/>
       <Label :item="item"/>
     </c-carousel-item>
   </b-carousel>
