@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "generate-images": "ts-node process-images.ts"
+    "generate-images": "ts-node -O '{\"module\":\"commonjs\"}' process-images.ts"
   },
   "dependencies": {
     "@mdi/svg": "^5.0.45",
