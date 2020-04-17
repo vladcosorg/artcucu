@@ -13,3 +13,4 @@ declare module '*.svg?inline' {
 declare module 'vue-firestore';
 declare module 'vue-ua';
 declare module 'cloudinary-core/src/url';
+declare module 'js-combinatorics';

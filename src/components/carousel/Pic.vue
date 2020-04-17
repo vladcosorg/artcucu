@@ -10,7 +10,7 @@ $padding: $border + 2px;
   padding: 0 $padding $padding $padding;
 }
 
-.picture {
+.picture img {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -36,10 +36,20 @@ $padding: $border + 2px;
       :alt="item.title"
       :class="$style.picture"
       :sizes="sizes"
-      :src="img"
+      :src="getImage('jpg')"
       :src-placeholder="placeholder"
-      :srcset="srcset"
-    />
+      :srcset="getSrcSet('jpg')"
+      use-picture
+    >
+      <source
+        type="image/webp"
+        :srcset="getSrcSet('webp')"
+      >
+      <source
+        type="image/jp2"
+        :srcset="getSrcSet('jp2')"
+      >
+    </v-lazy-image>
   </div>
 </template>
 
@@ -72,29 +82,29 @@ export default class Pic extends Vue {
     return `height: ${this.height}px`;
   }
 
-  get img() {
-    return this.cloudinaryImage();
-  }
 
-  get srcset(): string {
+  getSrcSet(format: 'webp' | 'jp2' | 'jpg' = 'jpg') {
     const parts: string[] = [];
     [1800, 1600, 1400, 1200, 1000, 800].forEach((width) => {
-      parts.push(`${this.cloudinaryImage({ width })} ${width}w`);
+      parts.push(`${this.getImage({
+        width,
+        format,
+      })} ${width}w`);
     });
     return parts.join(', ');
   }
 
   get placeholder() {
-    // eslint-disable-next-line max-len,@typescript-eslint/no-var-requires
+    // eslint-disable-next-line global-require,import/no-dynamic-require
     return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
   }
 
-  cloudinaryImage(options: Transformation.Options = {}) {
+  getImage(options: Transformation.Options = {}) {
     return cl.url(
-      `v${this.version}/artcucu/graphics/gallery/${this.item.filename}.png`,
+      `graphics/gallery/${this.item.filename}.png`,
       {
         quality: 'auto:low',
-        fetchFormat: 'auto',
+        format: 'webp',
         crop: 'fit',
         ...options,
       },
@@ -102,8 +112,10 @@ export default class Pic extends Vue {
   }
 
   created() {
-    // eslint-disable-next-line max-len,@typescript-eslint/no-var-requires
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
     const dimensions = require(
+      // eslint-disable-next-line global-require,import/no-dynamic-require
       `!image-dimensions-loader!@/graphics/gallery/${this.item.filename}.png`,
     );
 

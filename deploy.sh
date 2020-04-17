@@ -4,6 +4,7 @@
 set -e
 
 # build
+npm run upload
 npm run generate-images
 npm run build
 
