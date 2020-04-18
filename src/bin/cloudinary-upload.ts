@@ -19,7 +19,6 @@ cl.config({
 
 const cwd = path.resolve(__dirname, '..');
 
-
 async function run() {
   const paths = await globbby('graphics/gallery/*.png', {
     cwd,
@@ -39,17 +38,18 @@ async function run() {
           ['1800', '1600', '1400', '1200', '1000', '800'],
         )
           .toArray()
-          .map(([format, width]: [string, string]): TransformationOptions => ({
-            quality: 'auto:low',
-            fetchFormat: 'png',
-            crop: 'fit',
-            format,
-            width,
-          })),
+          .map(
+            ([format, width]: [string, string]): TransformationOptions => ({
+              quality: 'auto:low',
+              fetchFormat: 'png',
+              crop: 'fit',
+              format,
+              width,
+            }),
+          ),
       });
     }),
   );
 }
 
-run()
-  .catch((error) => console.log(error));
+run().catch((error) => console.log(error));

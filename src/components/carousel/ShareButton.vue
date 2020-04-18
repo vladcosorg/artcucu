@@ -1,11 +1,8 @@
 <template>
-  <a
-    :class="$style.link"
-    :href="shareUrl" target="_blank">
-    <Button :class="$style.button"/>
+  <a :class="$style.link" :href="shareUrl" target="_blank">
+    <Button :class="$style.button" />
   </a>
 </template>
-
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <GooSvg :class="$style.goo"/>
+    <GooSvg :class="$style.goo" />
     <span :class="$style.text">#staiacasa</span>
   </div>
 </template>
@@ -14,9 +14,7 @@ import GooSvg from '@/assets/images/goo.svg?inline';
     GooSvg,
   },
 })
-export default class Goo extends Vue {
-
-}
+export default class Goo extends Vue {}
 </script>
 
 <style lang="scss" module>

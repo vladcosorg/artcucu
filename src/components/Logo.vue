@@ -1,7 +1,6 @@
 <template>
-  <LogoSvg :class="$style.logo"/>
+  <LogoSvg :class="$style.logo" />
 </template>
-
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -12,13 +11,10 @@ import LogoSvg from '@/assets/images/logo.svg?inline';
     LogoSvg,
   },
 })
-export default class Logo extends Vue {
-
-}
+export default class Logo extends Vue {}
 </script>
 
 <style lang="scss" module>
-
 .wrapper {
   display: flex;
 }

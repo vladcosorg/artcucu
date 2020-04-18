@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <Logo :class="$style.logo"/>
+    <Logo :class="$style.logo" />
     <div :class="$style.socialWrapper">
       <a
         :class="$style.contacts"
@@ -8,7 +8,7 @@
         target="_blank"
         title="Contacteaza-ma pe e-mail"
       >
-        <InstagramIcon :class="$style.contactIcon"/>
+        <InstagramIcon :class="$style.contactIcon" />
       </a>
       <a
         :class="$style.contacts"
@@ -16,7 +16,7 @@
         target="_blank"
         title="Contacteaza-ma pe Instagram"
       >
-        <EmailIcon :class="$style.contactIcon"/>
+        <EmailIcon :class="$style.contactIcon" />
       </a>
       <a
         :class="$style.contacts"
@@ -24,7 +24,7 @@
         target="_blank"
         title="Contacteaza-ma pe Facebook"
       >
-        <FacebookIcon :class="$style.contactIcon"/>
+        <FacebookIcon :class="$style.contactIcon" />
       </a>
     </div>
   </div>
@@ -49,9 +49,7 @@ import FacebookIcon from '@/assets/images/social/facebook.svg?inline';
     FacebookIcon,
   },
 })
-export default class App extends Vue {
-
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss" module>

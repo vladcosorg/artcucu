@@ -29,7 +29,6 @@ Vue.use(VueAnalytics, {
   trackingId: '228830496',
 });
 
-
 Vue.config.productionTip = false;
 const root = new Vue({
   router,
@@ -42,10 +41,7 @@ const root = new Vue({
 });
 
 const resize = () => {
-  document.documentElement.style.setProperty(
-    '--vh',
-    `${window.innerHeight * 0.01}px`,
-  );
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 };
 
 document.addEventListener('DOMContentLoaded', () => {

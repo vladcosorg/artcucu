@@ -1,15 +1,14 @@
 <template>
   <div :class="[$style.wrapper, 'has-text-dark']">
     <div :class="$style.card">
-      <h1 :class="$style.cardAuthor">{{item.author}}</h1>
-      <h2 :class="$style.cardTitle">{{item.title}}</h2>
-      <p :class="$style.cardExtra">{{item.technique}}</p>
-      <p :class="$style.cardExtra">{{item.dimensions}}</p>
+      <h1 :class="$style.cardAuthor">{{ item.author }}</h1>
+      <h2 :class="$style.cardTitle">{{ item.title }}</h2>
+      <p :class="$style.cardExtra">{{ item.technique }}</p>
+      <p :class="$style.cardExtra">{{ item.dimensions }}</p>
     </div>
-    <share-button :class="$style.share"/>
+    <share-button :class="$style.share" />
   </div>
 </template>
-
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
@@ -86,11 +85,11 @@ export default class Label extends Vue {
     margin-top: 0.3rem;
 
     &:before {
-      content: "“";
+      content: '“';
     }
 
     &:after {
-      content: "”";
+      content: '”';
     }
 
     font-weight: 300;
@@ -125,6 +124,5 @@ export default class Label extends Vue {
     margin: 0;
     margin-left: -40px;
   }
-
 }
 </style>

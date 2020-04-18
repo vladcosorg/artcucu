@@ -1,14 +1,11 @@
 <template>
   <span class="cucu-love">
-      <HeartStrokeIcon
-        :class="['cucu-love-inactive', animation, {'cucu-love-fly': isActive} ]"
-        @click="activateButton"
-      />
-      <HeartFullIcon
-        :class="[ 'cucu-love-active']"
-        @click="activateButton"
-      />
-    </span>
+    <HeartStrokeIcon
+      :class="['cucu-love-inactive', animation, { 'cucu-love-fly': isActive }]"
+      @click="activateButton"
+    />
+    <HeartFullIcon :class="['cucu-love-active']" @click="activateButton" />
+  </span>
 </template>
 
 <script lang="ts">
@@ -54,7 +51,8 @@ export default class LoveButton extends Vue {
   created() {
     auth.onAuthStateChanged((user) => {
       this.currentUser = user;
-      likesCollection.doc(this.docId)
+      likesCollection
+        .doc(this.docId)
         .get()
         .then((doc) => {
           this.isActive = doc.exists;
@@ -63,21 +61,26 @@ export default class LoveButton extends Vue {
   }
 
   like() {
-    likesCollection.doc(this.docId)
+    likesCollection
+      .doc(this.docId)
       .get()
       .then((doc) => {
         if (doc.exists) {
-          likesCollection.doc(this.docId)
+          likesCollection
+            .doc(this.docId)
             .delete()
             .then(() => {
               const decrement = firebase.firestore.FieldValue.increment(-1);
-              picCollection.doc(this.id)
-                .set({
+              picCollection.doc(this.id).set(
+                {
                   likes: decrement,
-                }, { merge: true });
+                },
+                { merge: true },
+              );
             });
         } else {
-          likesCollection.doc(this.docId)
+          likesCollection
+            .doc(this.docId)
             .set({
               picId: this.id,
               // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -85,10 +88,12 @@ export default class LoveButton extends Vue {
             })
             .then(() => {
               const increment = firebase.firestore.FieldValue.increment(1);
-              picCollection.doc(this.id)
-                .set({
+              picCollection.doc(this.id).set(
+                {
                   likes: increment,
-                }, { merge: true });
+                },
+                { merge: true },
+              );
             });
         }
       });
@@ -102,13 +107,12 @@ export default class LoveButton extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
 @keyframes color-change {
   0% {
     color: inherit;
   }
   50% {
-    color: #9E3E3B;
+    color: #9e3e3b;
   }
   100% {
     color: inherit;
@@ -120,7 +124,6 @@ export default class LoveButton extends Vue {
   $icon-width: 30px;
   position: relative;
   line-height: 0;
-
 
   &:not(&-active) {
     /*animation-name: color-change, pulse;*/
@@ -143,8 +146,9 @@ export default class LoveButton extends Vue {
     fill: $default-color;
   }
 
-  &-inactive:hover, &-active {
-    fill: #9E3E3B;
+  &-inactive:hover,
+  &-active {
+    fill: #9e3e3b;
   }
 
   @include no-hover-support {
@@ -159,15 +163,13 @@ export default class LoveButton extends Vue {
 
   &-fly {
     transition: all 0.5s ease-out;
-    width: $icon-width*2 !important;
+    width: $icon-width * 2 !important;
     opacity: 0;
-    fill: #9E3E3B;
+    fill: #9e3e3b;
   }
 
   &-fly + &-active {
     visibility: visible;
   }
 }
-
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-item" v-if="isActive">
-    <slot/>
+    <slot />
   </div>
 </template>
 

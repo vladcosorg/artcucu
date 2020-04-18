@@ -1,10 +1,10 @@
 <template>
   <div :class="$style.wrapper" id="app">
-    <Header :class="$style.header"/>
+    <Header :class="$style.header" />
     <div :class="$style.view">
       <router-view></router-view>
     </div>
-    <Goo :class="$style.goo"/>
+    <Goo :class="$style.goo" />
   </div>
 </template>
 
@@ -21,14 +21,11 @@ import Home from '@/views/Home.vue';
     Goo,
   },
 })
-export default class App extends Vue {
-
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss" module>
 .wrapper {
-
   height: calc(var(--vh, 1vh) * 100);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -36,7 +33,6 @@ export default class App extends Vue {
   background-size: cover;
   display: flex;
   flex-direction: column;
-
 
   @mixin perete($x1, $x2: false) {
     @include bg('perete', $x1, $x2);

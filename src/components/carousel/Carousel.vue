@@ -8,10 +8,10 @@
     animated="slide"
     class="cucu-carousel"
   >
-    <c-carousel-item :key="key" v-for="(item,key) in items">
-      <Pic :item="item"/>
-      <LikeButton :id="item.filename" class="like"/>
-      <Label :item="item"/>
+    <c-carousel-item :key="key" v-for="(item, key) in items">
+      <Pic :item="item" />
+      <LikeButton :id="item.filename" class="like" />
+      <Label :item="item" />
     </c-carousel-item>
   </b-carousel>
 </template>
@@ -28,7 +28,7 @@ import cl from '@/cloudinary';
 
 @Component({
   components: {
-    LikeButton: () => import(/* webpackChunkName: "like" */'@/components/LikeButton.vue'),
+    LikeButton: () => import(/* webpackChunkName: "like" */ '@/components/LikeButton.vue'),
     Label,
     Pic,
     CCarouselItem,
@@ -48,14 +48,12 @@ import cl from '@/cloudinary';
         },
         {
           property: 'og:image',
-          content: cl.url(
-            `artcucu/graphics/gallery/${this.currentSlide.filename}.png`,
-            {
-              quality: 'auto:low',
-              fetchFormat: 'auto',
-              crop: 'fit',
-            },
-          ),
+          content: cl.url(`artcucu/graphics/gallery/${this.currentSlide.filename}.png`, {
+            quality: 'auto:low',
+            fetchFormat: 'auto',
+            crop: 'fit',
+            width: 1000,
+          }),
         },
       ],
     };
@@ -107,9 +105,10 @@ export default class Carousel extends Vue {
 .mdi {
 }
 
-.mdi-chevron-left, .mdi-chevron-right {
+.mdi-chevron-left,
+.mdi-chevron-right {
   background-color: #5c5f63;
-  mask: url("~@/assets/images/arrow.svg") no-repeat 100% 100%;
+  mask: url('~@/assets/images/arrow.svg') no-repeat 100% 100%;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
@@ -172,6 +171,4 @@ export default class Carousel extends Vue {
     }
   }
 }
-
-
 </style>

@@ -22,8 +22,4 @@ const likesCollection = firestore.collection('likes');
 const picCollection = firestore.collection('pics');
 export default firebaseApp;
 
-export {
-  auth,
-  likesCollection,
-  picCollection,
-};
+export { auth, likesCollection, picCollection };
