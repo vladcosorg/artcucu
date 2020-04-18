@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { v2 as cl } from 'cloudinary';
 import path from 'path';
 import globbby from 'globby';
 import dotenv from 'dotenv';
 import { cartesianProduct } from 'js-combinatorics';
-import fs from 'fs';
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
@@ -17,7 +17,6 @@ cl.config({
   api_secret: CLOUDINARY_SECRET_KEY,
 });
 
-const dir = path.resolve(__dirname, '../graphics/');
 const cwd = path.resolve(__dirname, '..');
 
 

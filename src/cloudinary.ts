@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Cloudinary } from 'cloudinary-core';
 
 const cl = new Cloudinary({

@@ -40,7 +40,7 @@ import cl from '@/cloudinary';
       meta: [
         {
           property: 'og:title',
-          content: this.items[this.slide].title + ' | ArtCucu - Stai Acasa si Admira',
+          content: `${this.items[this.slide].title} | ArtCucu - Stai Acasa si Admira`,
         },
         {
           property: 'og:url',
@@ -57,9 +57,9 @@ import cl from '@/cloudinary';
             },
           ),
         },
-      ]
-    }
-  }
+      ],
+    };
+  },
 })
 export default class Carousel extends Vue {
   items!: CarouselItem[];

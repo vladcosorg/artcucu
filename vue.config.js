@@ -1,6 +1,7 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/*
+eslint-disable @typescript-eslint/no-var-requires, global-require
+ */
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
 module.exports = {
@@ -53,7 +54,7 @@ module.exports = {
             routes: [
               '/',
               ...require('./src/data.json')
-                .map((item) => `/gallery/${item.filename}`)
+                .map((item) => `/gallery/${item.filename}`),
             ],
           }),
         ],

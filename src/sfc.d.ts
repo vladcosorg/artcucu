@@ -7,6 +7,6 @@ declare module 'vue/types/vue' {
   // 3. Declare augmentation for Vue
   interface Vue {
     $style: { [key: string]: string };
-    metaInfo:  { [key: string]: string };
+    metaInfo: { [key: string]: string };
   }
 }
