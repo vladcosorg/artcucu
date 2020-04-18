@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { v2 as cl } from 'cloudinary';
+import { TransformationOptions, v2 as cl } from 'cloudinary';
 import path from 'path';
 import globbby from 'globby';
 import dotenv from 'dotenv';
@@ -39,7 +39,7 @@ async function run() {
           ['1800', '1600', '1400', '1200', '1000', '800'],
         )
           .toArray()
-          .map(([format, width]: [string, string]) => ({
+          .map(([format, width]: [string, string]): TransformationOptions => ({
             quality: 'auto:low',
             fetchFormat: 'png',
             crop: 'fit',

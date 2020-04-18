@@ -32,24 +32,41 @@ $padding: $border + 2px;
 
 <template>
   <div :class="[ $style.wrapper]">
-    <v-lazy-image
-      :alt="item.title"
-      :class="$style.picture"
-      :sizes="sizes"
-      :src="getImage('jpg')"
-      :src-placeholder="placeholder"
-      :srcset="getSrcSet('jpg')"
-      use-picture
-    >
-      <source
-        type="image/webp"
-        :srcset="getSrcSet('webp')"
-      >
-      <source
-        type="image/jp2"
-        :srcset="getSrcSet('jp2')"
-      >
-    </v-lazy-image>
+    <picture :class="$style.picture">
+      <source type="image/webp" :srcset="getSrcSet('webp')">
+      <source type="image/jp2" :srcset="getSrcSet('jp2')">
+      <source type="image/jpeg" :srcset="getSrcSet('jpg')">
+      <img :src="placeholder" :alt="item.title">
+    </picture>
+<!--    <picture>-->
+<!--      <source :srcset="getSrcSet('jp2')" type="image/jp2"> &lt;!&ndash; safari &ndash;&gt;-->
+<!--      <img-->
+<!--        sizes="100vw"-->
+<!--        :alt="item.title"-->
+<!--        :srcset="getSrcSet('jpg')"-->
+<!--      />-->
+<!--    </picture>-->
+    <!--    <v-lazy-image-->
+    <!--      :alt="item.title"-->
+    <!--      :class="$style.picture"-->
+    <!--      :sizes="sizes"-->
+    <!--      :src-placeholder="placeholder"-->
+    <!--      :src="getImage('jpg')"-->
+    <!--      use-picture-->
+    <!--    >-->
+    <!--      <source-->
+    <!--        :srcset="getSrcSet('jp2')"-->
+    <!--        type="image/jp2"-->
+    <!--      />-->
+    <!--      <source-->
+    <!--        :srcset="getSrcSet('webp')"-->
+    <!--        type="image/webp"-->
+    <!--      />-->
+    <!--      <source-->
+    <!--        :srcset="getSrcSet('jpg')"-->
+    <!--        type="image/jpeg"-->
+    <!--      />-->
+    <!--    </v-lazy-image>-->
   </div>
 </template>
 
@@ -104,7 +121,7 @@ export default class Pic extends Vue {
       `graphics/gallery/${this.item.filename}.png`,
       {
         quality: 'auto:low',
-        format: 'webp',
+        format: 'jpg',
         crop: 'fit',
         ...options,
       },
