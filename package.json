@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "generate-images": "ts-node -O '{\"module\":\"commonjs\"}' process-images.ts",
-    "upload": "ts-node -O '{\"module\":\"commonjs\"}' src/bin/cloudinary-upload.ts"
+    "upload": "ts-node -O '{\"module\":\"commonjs\"}' src/cloudinary/uploader.ts"
   },
   "dependencies": {
     "@mdi/svg": "^5.0.45",

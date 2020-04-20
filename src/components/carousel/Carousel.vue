@@ -24,7 +24,7 @@ import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import data from '@/data.json';
 import { MetaInfo } from 'vue-meta';
-import cl from '@/cloudinary';
+import cl from '@/cloudinary/frontend';
 
 @Component({
   components: {

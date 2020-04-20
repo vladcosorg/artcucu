@@ -12,11 +12,9 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "node",
-      "sharp",
-      "vue-meta"
+    "typeRoots": [
+      "./@types",
+      "node_modules/@types"
     ],
     "paths": {
       "@/*": [

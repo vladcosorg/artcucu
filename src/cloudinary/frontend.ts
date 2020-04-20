@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import { Cloudinary } from 'cloudinary-core';
+import config from '@/cloudinary/config';
 
-const cl = new Cloudinary({
+export default new Cloudinary({
   // eslint-disable-next-line @typescript-eslint/camelcase
-  cloud_name: 'dirycjknd',
+  cloud_name: config.cloudName,
   secure: true,
 });
-
-export default cl;

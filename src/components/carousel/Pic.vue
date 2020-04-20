@@ -31,10 +31,19 @@ $padding: $border + 2px;
 <template>
   <div :class="[$style.wrapper]">
     <picture :class="$style.picture">
-      <source type="image/webp" v-if="loaded > -1" :srcset="getSrcSet('webp')" />
-      <source type="image/jp2" v-if="loaded > -1" :srcset="getSrcSet('jp2')" />
-      <source type="image/jpeg" v-if="loaded > -1" :srcset="getSrcSet('jpg')" />
-      <img :src="placeholder" :class="classes" @load="loaded++" :alt="item.title" sizes="100vw" />
+      <source
+        v-for="source in sources"
+        :key="source"
+        :type="`image/${source}`"
+        :srcset="getSrcSet(source)"
+      />
+      <img
+        :src="placeholder"
+        :class="classes"
+        @load="loaded = true"
+        :alt="item.title"
+        sizes="100vw"
+      />
     </picture>
   </div>
 </template>
@@ -44,7 +53,8 @@ $padding: $border + 2px;
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import VLazyImage from 'v-lazy-image';
-import cl from '@/cloudinary';
+import cloudinary from '@/cloudinary/frontend';
+import config, { Format } from '@/cloudinary/config';
 import { Transformation } from 'cloudinary-core';
 
 @Component({
@@ -61,7 +71,7 @@ export default class Pic extends Vue {
 
   version = 0;
 
-  loaded = -1;
+  loaded = false;
 
   get classes() {
     if (this.loaded) {
@@ -75,9 +85,17 @@ export default class Pic extends Vue {
     return `height: ${this.height}px`;
   }
 
-  getSrcSet(format: 'webp' | 'jp2' | 'jpg' = 'jpg') {
+  get sources() {
+    if (!this.loaded) {
+      return [];
+    }
+    return config.formats;
+  }
+
+  getSrcSet(format: Format) {
     const parts: string[] = [];
-    [1800, 1600, 1400, 1200, 1000, 800].forEach((width) => {
+
+    config.sizes.forEach((width) => {
       parts.push(
         `${this.getImage({
           width,
@@ -85,6 +103,7 @@ export default class Pic extends Vue {
         })} ${width}w`,
       );
     });
+
     return parts.join(', ');
   }
 
@@ -93,10 +112,8 @@ export default class Pic extends Vue {
   }
 
   getImage(options: Transformation.Options = {}) {
-    return cl.url(`graphics/gallery/${this.item.filename}.png`, {
-      quality: 'auto:low',
-      format: 'jpg',
-      crop: 'fit',
+    return cloudinary.url(`graphics/gallery/${this.item.filename}.png`, {
+      ...config.transformations,
       ...options,
     });
   }
