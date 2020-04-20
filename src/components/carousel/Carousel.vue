@@ -40,7 +40,7 @@ import cl from '@/cloudinary/frontend';
       meta: [
         {
           property: 'og:title',
-          content: `${this.items[this.slide].title} | ArtCucu - Stai Acasa si Admira`,
+          content: `${this.currentSlide.title} | ArtCucu - Stai Acasa si Admira`,
         },
         {
           property: 'og:url',
@@ -48,11 +48,12 @@ import cl from '@/cloudinary/frontend';
         },
         {
           property: 'og:image',
-          content: cl.url(`artcucu/graphics/gallery/${this.currentSlide.filename}.png`, {
+          content: cl.url(`/graphics/gallery/${this.currentSlide.filename}.png`, {
             quality: 'auto:low',
             fetchFormat: 'auto',
             crop: 'fit',
             width: 1000,
+            format: 'jpg',
           }),
         },
       ],
