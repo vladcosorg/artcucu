@@ -57,6 +57,7 @@ import cloudinary from '@/cloudinary/frontend';
 import config, { Format } from '@/cloudinary/config';
 import { Transformation } from 'cloudinary-core';
 
+const manifest: { [key: string]: string } = require('@/assets/generated/sqip/manifest.json');
 @Component({
   components: {
     VLazyImage,
@@ -108,7 +109,8 @@ export default class Pic extends Vue {
   }
 
   get placeholder() {
-    return require(`@/assets/images/gallery/${this.item.filename}.svg?data`);
+    const filename = manifest[this.item.filename];
+    return require(`@/assets/generated/sqip/${filename}?data`);
   }
 
   getImage(options: Transformation.Options = {}) {

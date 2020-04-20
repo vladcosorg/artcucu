@@ -2,6 +2,7 @@
 import { TransformationOptions, v2 as cl } from 'cloudinary';
 import path from 'path';
 import globbby from 'globby';
+import md5File from 'md5-file';
 import { cartesianProduct } from 'js-combinatorics';
 import fs from 'fs';
 import config from './config';
@@ -23,7 +24,10 @@ async function run() {
     paths.map((filePath) => {
       const parsedPath = path.parse(filePath);
       const publicId = path.join(parsedPath.dir, parsedPath.name);
-      return cl.uploader.upload(path.join(cwd, filePath), {
+      const fullPath = path.join(cwd, filePath);
+      const fileHash = md5File.sync(fullPath);
+      console.log(fileHash);
+      return cl.uploader.upload(fullPath, {
         public_id: publicId,
         overwrite: false,
         eager: cartesianProduct(config.formats, config.sizes)
@@ -38,6 +42,7 @@ async function run() {
       });
     }),
   );
+  console.log(result);
   // await fs.promises.writeFile('./files.json', JSON.stringify(result));
 }
 

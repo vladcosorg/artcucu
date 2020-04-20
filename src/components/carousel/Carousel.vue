@@ -47,6 +47,14 @@ import cl from '@/cloudinary/frontend';
           content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
         },
         {
+          property: 'og:width',
+          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
+        },
+        {
+          property: 'og:height',
+          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
+        },
+        {
           property: 'og:image',
           content: cl.url(`/graphics/gallery/${this.currentSlide.filename}.png`, {
             quality: 'auto:low',

@@ -2,7 +2,10 @@ language: node_js
 node_js:
   - "node"
 
-cache: npm
+cache:
+  npm: true
+  directories:
+    - src/assets/generated
 
 script:
   - npm run generate-images
