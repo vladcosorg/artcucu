@@ -23,19 +23,6 @@ module.exports = {
         ...options,
         limit: 30000,
       }));
-
-    if (config.plugins.has('copy')) {
-      config.plugin('copy').tap((options) => {
-        if (options[0]) {
-          options[0].push({
-            from: path.join(config.get('context'), 'src/graphics'),
-            to: path.join(config.output.get('path'), 'graphics'),
-            toType: 'dir',
-          });
-        }
-        return options;
-      });
-    }
   },
   // eslint-disable-next-line consistent-return
   configureWebpack: (config) => {

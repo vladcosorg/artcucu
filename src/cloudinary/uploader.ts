@@ -16,7 +16,7 @@ cl.config({
 const cwd = path.resolve(__dirname, '..');
 
 async function run() {
-  const paths = await globbby('graphics/gallery/ana.png', {
+  const paths = await globbby('assets/images/gallery/*.png', {
     cwd,
   });
 
@@ -26,10 +26,11 @@ async function run() {
       const publicId = path.join(parsedPath.dir, parsedPath.name);
       const fullPath = path.join(cwd, filePath);
       const fileHash = md5File.sync(fullPath);
-      console.log(fileHash);
       return cl.uploader.upload(fullPath, {
         public_id: publicId,
         overwrite: false,
+        async: true,
+        eager_async: true,
         eager: cartesianProduct(config.formats, config.sizes)
           .toArray()
           .map(

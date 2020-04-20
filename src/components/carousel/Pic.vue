@@ -66,12 +66,6 @@ const manifest: { [key: string]: string } = require('@/assets/generated/sqip/man
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
-  width = 0;
-
-  height = 0;
-
-  version = 0;
-
   loaded = false;
 
   get classes() {
@@ -80,10 +74,6 @@ export default class Pic extends Vue {
     }
 
     return this.$style.loading;
-  }
-
-  get style() {
-    return `height: ${this.height}px`;
   }
 
   get sources() {
@@ -114,18 +104,10 @@ export default class Pic extends Vue {
   }
 
   getImage(options: Transformation.Options = {}) {
-    return cloudinary.url(`graphics/gallery/${this.item.filename}.png`, {
+    return cloudinary.url(`assets/images/gallery/${this.item.filename}.png`, {
       ...config.transformations,
       ...options,
     });
-  }
-
-  created() {
-    const dimensions = require(`!image-dimensions-loader!@/graphics/gallery/${this.item.filename}.png`);
-
-    this.width = dimensions.width;
-    this.height = dimensions.height;
-    this.version = dimensions.bytes;
   }
 }
 </script>

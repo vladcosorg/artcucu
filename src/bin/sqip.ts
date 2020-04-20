@@ -7,7 +7,7 @@ import sqip from 'sqip';
 import md5File from 'md5-file';
 
 const root = env.PWD || cwd();
-const inDirPath = path.resolve(root, 'src/graphics/gallery');
+const inDirPath = path.resolve(root, 'src/assets/images/gallery');
 const outDirPath = path.resolve(root, 'src/assets/generated/sqip');
 
 function report(inPath: string, outPath: string): void {
