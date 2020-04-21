@@ -37,13 +37,7 @@ $padding: $border + 2px;
         :type="`image/${source}`"
         :srcset="getSrcSet(source)"
       />
-      <img
-        :src="placeholder"
-        :class="classes"
-        @load="loaded = true"
-        :alt="item.title"
-        sizes="100vw"
-      />
+      <img :src="placeholder" :class="classes" @load="loaded++" :alt="item.title" sizes="100vw" />
     </picture>
   </div>
 </template>
@@ -62,10 +56,10 @@ const manifest: { [key: string]: string } = require('@/assets/generated/sqip/man
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
-  loaded = false;
+  loaded = 0;
 
   get classes() {
-    if (this.loaded) {
+    if (this.loaded > 1) {
       return this.$style.loaded;
     }
 
