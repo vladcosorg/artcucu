@@ -52,17 +52,13 @@ $padding: $border + 2px;
 /* eslint-disable @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require */
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
-import VLazyImage from 'v-lazy-image';
 import cloudinary from '@/cloudinary/frontend';
 import config, { Format } from '@/cloudinary/config';
 import { Transformation } from 'cloudinary-core';
 
 const manifest: { [key: string]: string } = require('@/assets/generated/sqip/manifest.json');
-@Component({
-  components: {
-    VLazyImage,
-  },
-})
+
+@Component({})
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 

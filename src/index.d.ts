@@ -10,6 +10,16 @@ declare module '*.svg?inline' {
   export default content;
 }
 
+declare module '*.svg?sprite' {
+  interface SpriteSymbol {
+    id: string;
+    viewBox: string;
+    content: string;
+  }
+  const content: SpriteSymbol;
+  export default content;
+}
+
 declare module 'vue-firestore';
 declare module 'vue-ua';
 declare module 'cloudinary-core/src/url';

@@ -1,5 +1,5 @@
 <template>
-  <a :class="$style.link" :href="shareUrl" target="_blank">
+  <a :class="$style.link" :href="shareUrl" rel="noreferrer" target="_blank">
     <Button :class="$style.button" />
   </a>
 </template>

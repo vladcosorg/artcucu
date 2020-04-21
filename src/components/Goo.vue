@@ -1,20 +1,20 @@
 <template>
   <div :class="$style.wrapper">
-    <GooSvg :class="$style.goo" />
+    <svg :viewBox="svg.viewBox" :class="$style.goo">
+      <use :xlink:href="`#${svg.id}`" />
+    </svg>
     <span :class="$style.text">#staiacasa</span>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import GooSvg from '@/assets/images/goo.svg?inline';
+import GooSvg from '@/assets/images/goo.svg?sprite';
 
-@Component({
-  components: {
-    GooSvg,
-  },
-})
-export default class Goo extends Vue {}
+@Component({})
+export default class Goo extends Vue {
+  private svg = GooSvg;
+}
 </script>
 
 <style lang="scss" module>

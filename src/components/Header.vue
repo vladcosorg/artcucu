@@ -7,6 +7,7 @@
         href="mailto:capatina.oxana@gmail.com"
         target="_blank"
         title="Contacteaza-ma pe e-mail"
+        rel="noreferrer"
       >
         <InstagramIcon :class="$style.contactIcon" />
       </a>
@@ -15,6 +16,7 @@
         href="https://www.instagram.com/art.cucu/"
         target="_blank"
         title="Contacteaza-ma pe Instagram"
+        rel="noreferrer"
       >
         <EmailIcon :class="$style.contactIcon" />
       </a>
@@ -23,6 +25,7 @@
         href="https://www.facebook.com/Artcucu-168904146983848/"
         target="_blank"
         title="Contacteaza-ma pe Facebook"
+        rel="noreferrer"
       >
         <FacebookIcon :class="$style.contactIcon" />
       </a>

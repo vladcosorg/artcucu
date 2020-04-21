@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import VueFirestore from 'vue-firestore';
 import VueAnalytics from 'vue-ua';
 import VueRouter from 'vue-router';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
@@ -22,7 +21,6 @@ Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueRouter);
 
-Vue.use(VueFirestore);
 Vue.use(VueAnalytics, {
   appName: 'artcucu', // Mandatory
   appVersion: '1', // Mandatory

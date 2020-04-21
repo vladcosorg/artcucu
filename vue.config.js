@@ -2,7 +2,6 @@
 eslint-disable @typescript-eslint/no-var-requires, global-require
  */
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const path = require('path');
 
 module.exports = {
   pluginOptions: {
@@ -15,19 +14,28 @@ module.exports = {
       config.output.filename('[name].[hash].js').end();
     }
 
-    config.module
-      .rule('images')
-      .use('url-loader')
-      .loader('url-loader')
-      .tap((options) => ({
-        ...options,
-        limit: 30000,
-      }));
+    if (process.env.NODE_ENV === 'production') {
+      config.module
+        .rule('svgo')
+        .test(/\.(svg)(\?.*)?$/)
+        .use('svgo')
+        .loader('svgo-loader')
+        .options({
+          plugins: [
+            {
+              removeUnknownsAndDefaults: {
+                keepDataAttrs: false,
+              },
+            },
+          ],
+        });
+    }
   },
   // eslint-disable-next-line consistent-return
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {
       return {
+        stats: 'verbose',
         plugins: [
           new PrerenderSPAPlugin({
             // Required - The path to the webpack-outputted app to prerender.

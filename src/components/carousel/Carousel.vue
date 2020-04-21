@@ -34,13 +34,13 @@ import cl from '@/cloudinary/frontend';
     CCarouselItem,
   },
   metaInfo(this: Carousel): MetaInfo {
+    const title = `${this.currentSlide.title} - ${this.currentSlide.author} | ArtCucu - Stai Acasa si Admira`;
     return {
-      title: this.items[this.slide].title,
-      titleTemplate: '%s | ArtCucu - Stai Acasa si Admira',
+      title,
       meta: [
         {
           property: 'og:title',
-          content: `${this.currentSlide.title} | ArtCucu - Stai Acasa si Admira`,
+          content: title,
         },
         {
           property: 'og:url',
@@ -48,11 +48,11 @@ import cl from '@/cloudinary/frontend';
         },
         {
           property: 'og:width',
-          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
+          content: '1000',
         },
         {
           property: 'og:height',
-          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
+          content: '1000',
         },
         {
           property: 'og:image',
@@ -117,7 +117,7 @@ export default class Carousel extends Vue {
 .mdi-chevron-left,
 .mdi-chevron-right {
   background-color: #5c5f63;
-  mask: url('~@/assets/images/arrow.svg') no-repeat 100% 100%;
+  mask: url('~@/assets/images/arrow.svg?data') no-repeat 100% 100%;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
