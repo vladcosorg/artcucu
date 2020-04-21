@@ -4,7 +4,6 @@ import path from 'path';
 import globbby from 'globby';
 import md5File from 'md5-file';
 import { cartesianProduct } from 'js-combinatorics';
-import fs from 'fs';
 import config from './config';
 
 cl.config({

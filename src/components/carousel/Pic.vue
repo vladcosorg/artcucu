@@ -46,9 +46,7 @@ $padding: $border + 2px;
 /* eslint-disable @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require */
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
-import cloudinary from '@/cloudinary/frontend';
 import config, { Format } from '@/cloudinary/config';
-import { Transformation } from 'cloudinary-core';
 
 const manifest: { [key: string]: string } = require('@/assets/generated/sqip/manifest.json');
 
@@ -77,12 +75,7 @@ export default class Pic extends Vue {
     const parts: string[] = [];
 
     config.sizes.forEach((width) => {
-      parts.push(
-        `${this.getImage({
-          width,
-          format,
-        })} ${width}w`,
-      );
+      parts.push(`${this.getImage(width, format)} ${width}w`);
     });
 
     return parts.join(', ');
@@ -93,11 +86,12 @@ export default class Pic extends Vue {
     return require(`@/assets/generated/sqip/${filename}?data`);
   }
 
-  getImage(options: Transformation.Options = {}) {
-    return cloudinary.url(`assets/images/gallery/${this.item.filename}.png`, {
-      ...config.transformations,
-      ...options,
-    });
+  getImage(width: number, format: Format) {
+    return `https://res.cloudinary.com/${
+      config.cloudName
+    }/image/upload/${config.getTransformationString(width)}/assets/images/gallery/${
+      this.item.filename
+    }.${format}`;
   }
 }
 </script>

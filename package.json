@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "serve-build": "serve -s dist",
+    "serve-build": "vue-cli-service build && serve -s dist",
     "lint": "vue-cli-service lint",
     "generate-sqip": "ts-node -O '{\"module\":\"commonjs\"}' src/bin/sqip.ts",
     "upload": "ts-node -O '{\"module\":\"commonjs\"}' src/cloudinary/uploader.ts"
@@ -15,7 +15,6 @@
     "buefy": "^0.8.0",
     "bulma": "^0.8.2",
     "cloudinary": "^1.21.0",
-    "cloudinary-core": "^2.8.2",
     "core-js": "^3.6.4",
     "dotenv": "^8.2.0",
     "filesize": "^6.1.0",

@@ -24,7 +24,7 @@ import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import data from '@/data.json';
 import { MetaInfo } from 'vue-meta';
-import cl from '@/cloudinary/frontend';
+import config from '@/cloudinary/config';
 
 @Component({
   components: {
@@ -56,13 +56,7 @@ import cl from '@/cloudinary/frontend';
         },
         {
           property: 'og:image',
-          content: cl.url(`/graphics/gallery/${this.currentSlide.filename}.png`, {
-            quality: 'auto:low',
-            fetchFormat: 'auto',
-            crop: 'fit',
-            width: 1000,
-            format: 'jpg',
-          }),
+          content: config.getGalleryURL(this.currentSlide.filename, 1000, 'jpg'),
         },
       ],
     };
