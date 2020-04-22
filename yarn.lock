@@ -10932,6 +10932,13 @@ vue-ua@^1.7.0:
   resolved "https://registry.yarnpkg.com/vue-ua/-/vue-ua-1.7.0.tgz#819a9eef2d2cf65e90096480901d2912b43ec319"
   integrity sha512-OD1hItI6CTwzLWaNaeEfDjFsHbzEp+FXsV55eF11INdhV+ItNfxhAbFEeZzCR4mY3uwOJw0FN+wIIyWvJQ8tpQ==
 
+vue2-storage@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/vue2-storage/-/vue2-storage-5.0.0.tgz#1f95bd58a7671ad05fcc88ab8f3e2dc4fb414e69"
+  integrity sha512-HDrQ7Q8TfquaCpHnf5rLJmFLgwt9VvDyvu7xJm6I+m63IKIq+hqUZscn6vG0A56mFGcTArP+2Lzfezf5vrukPg==
+  dependencies:
+    object-assign "^4.1.1"
+
 vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"

@@ -1,10 +1,10 @@
 <template>
   <span class="cucu-love">
     <HeartStrokeIcon
-      :class="['cucu-love-inactive', animation, { 'cucu-love-fly': isActive }]"
-      @click="activateButton"
+      :class="['cucu-love-inactive', { 'cucu-love-fly': isActive }]"
+      @click="toggle"
     />
-    <HeartFullIcon :class="['cucu-love-active']" @click="activateButton" />
+    <HeartFullIcon :class="['cucu-love-active']" @click="toggle" />
   </span>
 </template>
 
@@ -12,8 +12,6 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import HeartStrokeIcon from '@/assets/images/heart-stroke.svg?inline';
 import HeartFullIcon from '@/assets/images/heart-full.svg?inline';
-import { auth, likesCollection, picCollection } from '@/firebase';
-import * as firebase from 'firebase/app';
 
 @Component({
   components: {
@@ -26,82 +24,27 @@ export default class LoveButton extends Vue {
 
   private isActive = false;
 
-  private runAnimation = false;
-
-  private currentUser!: firebase.User | null;
-
-  // eslint-disable-next-line class-methods-use-this
-  get docId() {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return `${this.currentUser!.uid}_${this.id}`;
-  }
-
-  get animation() {
-    if (!this.runAnimation) {
-      return '';
+  async created() {
+    if (this.$storage.has(this.id)) {
+      this.isActive = this.$storage.get(this.id, false);
+    } else {
+      const Voter = await this.getVoter();
+      const status = await Voter.getVoteStatus(this.id);
+      this.$storage.set(this.id, status);
+      this.isActive = status;
     }
-
-    if (!this.isActive) {
-      return 'animated rubberBand';
-    }
-
-    return 'animated heartBeat';
   }
 
-  created() {
-    auth.onAuthStateChanged((user) => {
-      this.currentUser = user;
-      likesCollection
-        .doc(this.docId)
-        .get()
-        .then((doc) => {
-          this.isActive = doc.exists;
-        });
-    });
+  async getVoter() {
+    const { default: Voter } = await import(/* webpackChunkName: "voter" */ '@/misc/Voter');
+    return Voter;
   }
 
-  like() {
-    likesCollection
-      .doc(this.docId)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          likesCollection
-            .doc(this.docId)
-            .delete()
-            .then(() => {
-              const decrement = firebase.firestore.FieldValue.increment(-1);
-              picCollection.doc(this.id).set(
-                {
-                  likes: decrement,
-                },
-                { merge: true },
-              );
-            });
-        } else {
-          likesCollection
-            .doc(this.docId)
-            .set({
-              picId: this.id,
-              // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-              userId: this.currentUser!.uid,
-            })
-            .then(() => {
-              const increment = firebase.firestore.FieldValue.increment(1);
-              picCollection.doc(this.id).set(
-                {
-                  likes: increment,
-                },
-                { merge: true },
-              );
-            });
-        }
-      });
-  }
-
-  activateButton() {
+  async toggle() {
     this.isActive = !this.isActive;
-    this.like();
+    const Voter = await this.getVoter();
+    const newStatus = await Voter.toggle(this.id);
+    this.$storage.set(this.id, newStatus);
   }
 }
 </script>
@@ -126,7 +69,6 @@ export default class LoveButton extends Vue {
   line-height: 0;
 
   &:not(&-active) {
-    /*animation-name: color-change, pulse;*/
     animation-iteration-count: infinite;
     animation-duration: 3s, 0.5s;
   }

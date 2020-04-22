@@ -8,11 +8,17 @@ import Carousel from 'buefy/src/components/carousel';
 // @ts-ignore
 import Icon from 'buefy/src/components/icon';
 import VueMeta from 'vue-meta';
+import { Vue2Storage } from 'vue2-storage';
 import router from './router';
 import App from './App.vue';
 
 import './assets/scss/app.scss';
 
+Vue.use(Vue2Storage, {
+  prefix: 'cucu_',
+  driver: 'local',
+  ttl: 0,
+});
 Vue.use(VueMeta, {
   // optional pluginOptions
   refreshOnceOnNavigation: true,
