@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
 import process from 'process';
-import { TransformationOptions } from 'cloudinary';
 
 dotenv.config({
   path: path.resolve(__dirname, '../../.env'),
