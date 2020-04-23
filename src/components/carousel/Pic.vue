@@ -36,8 +36,9 @@ $padding: $border + 2px;
         :key="source"
         :type="`image/${source}`"
         :srcset="getSrcSet(source)"
+        :sizes="sizes"
       />
-      <img :src="placeholder" :class="classes" @load="loaded++" :alt="item.title" sizes="100vw" />
+      <img :src="placeholder" :class="classes" @load="loaded++" :alt="item.title" />
     </picture>
   </div>
 </template>
@@ -62,6 +63,15 @@ export default class Pic extends Vue {
     }
 
     return this.$style.loading;
+  }
+
+  get sizes() {
+    return [
+      '(max-width: 1024px) 100vw',
+      '(max-width: 1216px) 960px',
+      '(max-width: 1408px) 1152px',
+      '1344px',
+    ].join(', ');
   }
 
   get sources() {
