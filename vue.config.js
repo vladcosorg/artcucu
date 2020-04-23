@@ -2,6 +2,7 @@
 eslint-disable @typescript-eslint/no-var-requires, global-require
  */
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const path = require('path');
 
 module.exports = {
   pluginOptions: {
@@ -10,23 +11,19 @@ module.exports = {
     },
   },
   chainWebpack: (config) => {
-    config.plugins.delete('prefetch');
     if (process.env.NODE_ENV === 'development') {
       config.output.filename('[name].[hash].js').end();
     }
 
     if (process.env.NODE_ENV === 'production') {
-      config
-        .plugin('prerender')
-        .use(PrerenderSPAPlugin, [
-          {
-            // Required - The path to the webpack-outputted app to prerender.
-            staticDir: config.output.get('path'),
-            // Required - Routes to render.
-            routes: ['/', ...require('./src/data.json').map((item) => `/gallery/${item.filename}`)],
-          },
-        ])
-        .before('vue-loader');
+      config.plugin('prerender').use(PrerenderSPAPlugin, [
+        {
+          // Required - The path to the webpack-outputted app to prerender.
+          staticDir: config.output.get('path'),
+          // Required - Routes to render.
+          routes: ['/'],
+        },
+      ]);
       config.module
         .rule('svgo')
         .test(/\.(svg)(\?.*)?$/)
@@ -42,6 +39,14 @@ module.exports = {
           ],
         });
     }
+
+    config.plugin('html').tap((args) => {
+      return [
+        {
+          ...args[0],
+        },
+      ];
+    });
   },
   css: {
     loaderOptions: {
