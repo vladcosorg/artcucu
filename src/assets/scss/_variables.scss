@@ -56,3 +56,5 @@ $colors: map-merge($colors, $addColors);
     @content;
   }
 }
+
+@import "~bulma/sass/elements/container";

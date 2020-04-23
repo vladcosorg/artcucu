@@ -48,7 +48,7 @@ import config from '@/cloudinary/config';
         },
         {
           property: 'og:width',
-          content: '1000',
+          content: '1200',
         },
         {
           property: 'og:height',
@@ -56,7 +56,11 @@ import config from '@/cloudinary/config';
         },
         {
           property: 'og:image',
-          content: config.getGalleryURL(this.currentSlide.filename, 1000, 'jpg'),
+          content: config.getGalleryURLWithTransformation(
+            'w_1200,c_pad,ar_41:20,b_auto:predominant',
+            this.currentSlide.filename,
+            'jpg',
+          ),
         },
       ],
     };
@@ -126,27 +130,25 @@ export default class Carousel extends Vue {
 }
 
 .carousel-arrow {
+  @extend .container;
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  display: flex;
+  transform: translateX(-50%);
+  top: calc(50% - 130px) !important;
   .icon {
-    top: calc(50% - 100px) !important;
+    position: static !important;
     border: none !important;
     color: transparent !important;
     background-color: transparent !important;
   }
-
-  --arrow-padding: 1.5rem;
-
-  @include fullhd {
-    @media (max-resolution: 1dppx) {
-      --arrow-padding: 20rem;
-    }
-  }
-
-  .has-icons-left {
-    left: var(--arrow-padding) !important;
-  }
-
   .has-icons-right {
-    right: var(--arrow-padding) !important;
+    margin-left: auto;
+    margin-right: -30px;
+  }
+  .has-icons-left {
+    margin-left: -30px;
   }
 }
 

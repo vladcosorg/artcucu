@@ -29,7 +29,7 @@ $padding: $border + 2px;
 </style>
 
 <template>
-  <div :class="[$style.wrapper]">
+  <div :class="[$style.wrapper, 'container']">
     <picture :class="$style.picture">
       <source
         v-for="source in sources"
