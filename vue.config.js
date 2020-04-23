@@ -16,6 +16,17 @@ module.exports = {
     }
 
     if (process.env.NODE_ENV === 'production') {
+      config
+        .plugin('prerender')
+        .use(PrerenderSPAPlugin, [
+          {
+            // Required - The path to the webpack-outputted app to prerender.
+            staticDir: config.output.get('path'),
+            // Required - Routes to render.
+            routes: ['/', ...require('./src/data.json').map((item) => `/gallery/${item.filename}`)],
+          },
+        ])
+        .before('vue-loader');
       config.module
         .rule('svgo')
         .test(/\.(svg)(\?.*)?$/)
@@ -30,22 +41,6 @@ module.exports = {
             },
           ],
         });
-    }
-  },
-  // eslint-disable-next-line consistent-return
-  configureWebpack: (config) => {
-    if (process.env.NODE_ENV === 'production') {
-      return {
-        stats: 'verbose',
-        plugins: [
-          new PrerenderSPAPlugin({
-            // Required - The path to the webpack-outputted app to prerender.
-            staticDir: config.output.path,
-            // Required - Routes to render.
-            routes: ['/', ...require('./src/data.json').map((item) => `/gallery/${item.filename}`)],
-          }),
-        ],
-      };
     }
   },
   css: {

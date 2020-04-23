@@ -5,13 +5,15 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "serve-build": "vue-cli-service build && serve -s dist",
     "lint": "vue-cli-service lint",
     "generate-sqip": "ts-node -O '{\"module\":\"commonjs\"}' src/bin/sqip.ts",
+    "serve-build": "vue-cli-service build && serve -s dist",
     "upload": "ts-node -O '{\"module\":\"commonjs\"}' src/cloudinary/uploader.ts"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.2",
     "@mdi/svg": "^5.0.45",
+    "autoprefixer": "^9.7.6",
     "buefy": "^0.8.0",
     "bulma": "^0.8.2",
     "cloudinary": "^1.21.0",
