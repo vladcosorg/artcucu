@@ -2,32 +2,27 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-  },
-  {
-    path: '/gallery/:id',
-    name: 'Gallery',
-    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-];
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  routes: [
+    {
+      path: '/',
+      redirect: '/gallery/',
+    },
+    {
+      path: '/gallery/april/:id?',
+      name: 'Gallery',
+      component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue'),
+      props: (route) => ({ id: route.params.id, album: 'april' }),
+    },
+    {
+      path: '/gallery/:id?',
+      name: 'Gallery',
+      component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue'),
+      props: (route) => ({ id: route.params.id, album: 'march' }),
+    },
+  ],
 });
 
 export default router;

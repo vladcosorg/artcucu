@@ -12,12 +12,10 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Goo from '@/components/Goo.vue';
-import Home from '@/views/Home.vue';
 
 @Component({
   components: {
     Header,
-    Home,
     Goo,
   },
 })

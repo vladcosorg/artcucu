@@ -21,7 +21,13 @@ module.exports = {
           // Required - The path to the webpack-outputted app to prerender.
           staticDir: config.output.get('path'),
           // Required - Routes to render.
-          routes: ['/'],
+          routes: [
+            '/',
+            ...require('./src/assets/meta/march.json').map((item) => `/gallery/${item.filename}`),
+            ...require('./src/assets/meta/april.json').map(
+              (item) => `/gallery/april/${item.filename}`,
+            ),
+          ],
         },
       ]);
       config.module

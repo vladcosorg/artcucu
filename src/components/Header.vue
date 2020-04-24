@@ -36,8 +36,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Logo from '@/components/Logo.vue';
-import Goo from '@/components/Goo.vue';
-import Home from '@/views/Home.vue';
 import EmailIcon from '@/assets/images/social/email.svg?inline';
 import InstagramIcon from '@/assets/images/social/instagram.svg?inline';
 import FacebookIcon from '@/assets/images/social/facebook.svg?inline';
@@ -45,8 +43,6 @@ import FacebookIcon from '@/assets/images/social/facebook.svg?inline';
 @Component({
   components: {
     Logo,
-    Home,
-    Goo,
     EmailIcon,
     InstagramIcon,
     FacebookIcon,

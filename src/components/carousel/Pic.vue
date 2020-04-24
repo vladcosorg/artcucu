@@ -55,6 +55,8 @@ const manifest: { [key: string]: string } = require('@/assets/generated/sqip/man
 export default class Pic extends Vue {
   @Prop() item!: CarouselItem;
 
+  @Prop() dir!: string;
+
   loaded = 0;
 
   get classes() {
@@ -93,13 +95,13 @@ export default class Pic extends Vue {
 
   get placeholder() {
     const filename = manifest[this.item.filename];
-    return require(`@/assets/generated/sqip/${filename}?data`);
+    return require(`@/assets/generated/sqip/${this.dir}/${filename}?data`);
   }
 
   getImage(width: number, format: Format) {
     return `https://res.cloudinary.com/${
       config.cloudName
-    }/image/upload/${config.getTransformationString(width)}/assets/images/gallery/${
+    }/image/upload/${config.getTransformationString(width)}/v1/assets/images/gallery/${this.dir}/${
       this.item.filename
     }.${format}`;
   }

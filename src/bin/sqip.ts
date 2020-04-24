@@ -121,4 +121,4 @@ async function compile(pattern: string) {
 }
 
 // fs.rmdirSync(outDirPath, { recursive: true });
-compile('*.png').catch((error) => console.log(error));
+compile('**/*.png').catch((error) => console.log(error));
