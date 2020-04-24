@@ -8,7 +8,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/gallery/',
+      redirect: '/gallery/april/',
     },
     {
       path: '/gallery/april/:id?',
