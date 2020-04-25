@@ -11,16 +11,19 @@ const router = new VueRouter({
       redirect: '/gallery/april/',
     },
     {
-      path: '/gallery/april/:id?',
-      name: 'Gallery',
-      component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue'),
-      props: (route) => ({ id: route.params.id, album: 'april' }),
+      path: '/gallery/',
+      redirect: '/gallery/april/',
     },
     {
-      path: '/gallery/:id?',
-      name: 'Gallery',
+      path: '/gallery/:album(march|april)/:id?/',
+      name: 'gallery',
       component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue'),
-      props: (route) => ({ id: route.params.id, album: 'march' }),
+      props: true,
+    },
+    {
+      path: '/gallery/:id/',
+      name: 'Gallery',
+      redirect: '/gallery/march/:id/',
     },
   ],
 });

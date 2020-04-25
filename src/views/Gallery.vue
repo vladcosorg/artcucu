@@ -47,7 +47,7 @@ import config from '@/cloudinary/config';
         },
         {
           property: 'og:url',
-          content: `https://www.artcucu.com/gallery/${this.currentSlide.filename}/`,
+          content: `https://www.artcucu.com/gallery/${this.album}/${this.currentSlide.filename}/`,
         },
         {
           property: 'og:width',
@@ -94,11 +94,11 @@ export default class Gallery extends Vue {
   set slide(id: number) {
     if (this.album === 'april') {
       this.$router.push({
-        path: `/gallery/april/${this.slideMap[id]}`,
+        path: `/gallery/april/${this.slideMap[id]}/`,
       });
     } else {
       this.$router.push({
-        path: `/gallery/${this.slideMap[id]}`,
+        path: `/gallery/${this.slideMap[id]}/`,
       });
     }
   }

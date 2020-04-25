@@ -2,7 +2,7 @@
 eslint-disable @typescript-eslint/no-var-requires, global-require
  */
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const path = require('path');
+// const path = require('path');
 
 module.exports = {
   pluginOptions: {

@@ -2,7 +2,7 @@
 import { TransformationOptions, v2 as cl } from 'cloudinary';
 import path from 'path';
 import globbby from 'globby';
-import md5File from 'md5-file';
+// import md5File from 'md5-file';
 import { cartesianProduct } from 'js-combinatorics';
 import config from './config';
 
@@ -24,7 +24,7 @@ async function run() {
       const parsedPath = path.parse(filePath);
       const publicId = path.join(parsedPath.dir, parsedPath.name);
       const fullPath = path.join(cwd, filePath);
-      const fileHash = md5File.sync(fullPath);
+      // const fileHash = md5File.sync(fullPath);
       return cl.uploader.upload(fullPath, {
         public_id: publicId,
         overwrite: false,
