@@ -1,0 +1,15 @@
+@import "variables";
+
+@import "~bulma/sass/base/_all";
+@import "~bulma/sass/elements/icon";
+@import "~bulma/sass/components/_all";
+@import "~bulma/sass/layout/_all";
+
+@import "~buefy/src/scss/utils/all";
+@import "~buefy/src/scss/components/carousel";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
