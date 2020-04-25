@@ -28,6 +28,13 @@ module.exports = {
               (item) => `/gallery/april/${item.filename}`,
             ),
           ],
+          postProcess(renderedRoute) {
+            renderedRoute.html = renderedRoute.html.replace(
+              /id="app"/,
+              'id="app" data-server-rendered="true"',
+            );
+            return renderedRoute;
+          },
         },
       ]);
       config.module
