@@ -1,5 +1,5 @@
 /*
-eslint-disable @typescript-eslint/no-var-requires, global-require
+eslint-disable @typescript-eslint/no-var-requires, global-require, no-param-reassign
  */
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 // const path = require('path');
