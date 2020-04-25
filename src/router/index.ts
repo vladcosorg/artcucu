@@ -21,6 +21,11 @@ const router = new VueRouter({
       props: true,
     },
     {
+      path: '/results',
+      component: () => import(/* webpackChunkName: "results" */ '../views/Results.vue'),
+      props: true,
+    },
+    {
       path: '/gallery/:id/',
       name: 'Gallery',
       redirect: '/gallery/march/:id/',

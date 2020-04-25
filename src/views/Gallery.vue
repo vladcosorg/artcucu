@@ -112,6 +112,10 @@ export default class Gallery extends Vue {
 </script>
 
 <style lang="scss">
+body {
+  overflow: hidden;
+}
+
 .carousel-items {
   .carousel-arrow.is-hovered {
     @include mobile {

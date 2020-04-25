@@ -5,3 +5,7 @@ export interface CarouselItem {
   dimensions: string;
   filename: string;
 }
+
+export interface LikedCarouselItem extends CarouselItem {
+  likes: number;
+}
