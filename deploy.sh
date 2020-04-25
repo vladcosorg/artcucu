@@ -5,7 +5,7 @@ set -e
 
 # build
 #npm run upload
-npm run generate-images
+#npm run generate-images
 npm run build
 
 # navigate into the build output directory
