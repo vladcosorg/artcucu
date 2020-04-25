@@ -43,6 +43,18 @@ module.exports = {
             },
           ],
         });
+
+      config.optimization.minimizer('terser').tap((args) => {
+        const options = args[0];
+        options.terserOptions.output = {
+          comments: false,
+        };
+        return [
+          {
+            ...options,
+          },
+        ];
+      });
     }
 
     config.plugin('html').tap((args) => {
