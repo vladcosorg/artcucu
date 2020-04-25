@@ -8,8 +8,6 @@ cache:
     - src/assets/generated
 
 script:
-  - npm run generate-sqip
-  - npm run upload
   - npm run build
 
 deploy:
