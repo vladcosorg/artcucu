@@ -22,6 +22,7 @@ module.exports = {
           // Required - Routes to render.
           routes: [
             '/',
+            '/results',
             ...require('./src/assets/meta/march.json').map((item) => `/gallery/${item.filename}`),
             ...require('./src/assets/meta/april.json').map(
               (item) => `/gallery/april/${item.filename}`,
