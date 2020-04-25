@@ -29,8 +29,13 @@ export default new (class {
     return `c_fit,q_auto:low,w_${width}`;
   }
 
-  getGalleryURLWithTransformation(transformationString: string, fileName: string, format: Format) {
-    return `https://res.cloudinary.com/${this.cloudName}/image/upload/${transformationString}/assets/images/gallery/${fileName}.${format}`;
+  getGalleryURLWithTransformation(
+    transformationString: string,
+    fileName: string,
+    format: Format,
+    album = 'march',
+  ) {
+    return `https://res.cloudinary.com/${this.cloudName}/image/upload/${transformationString}/assets/images/gallery/${album}/${fileName}.${format}`;
   }
 
   getGalleryURL(fileName: string, width: number, format: Format) {

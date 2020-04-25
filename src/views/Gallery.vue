@@ -63,6 +63,7 @@ import config from '@/cloudinary/config';
             'w_1200,c_pad,ar_41:20,b_auto:predominant',
             this.currentSlide.filename,
             'jpg',
+            this.album,
           ),
         },
       ],
