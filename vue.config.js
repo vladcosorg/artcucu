@@ -4,11 +4,6 @@ eslint-disable @typescript-eslint/no-var-requires, global-require, no-param-reas
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 module.exports = {
-  pluginOptions: {
-    webpackBundleAnalyzer: {
-      openAnalyzer: false,
-    },
-  },
   chainWebpack: (config) => {
     if (process.env.NODE_ENV === 'development') {
       config.output.filename('[name].[hash].js').end();
