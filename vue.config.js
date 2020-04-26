@@ -45,6 +45,10 @@ module.exports = {
               /<link rel="stylesheet" type="text\/css" href=".*?">/g,
               '',
             );
+            renderedRoute.html = renderedRoute.html.replace(
+              /media="all" onload="this.media='all'"/g,
+              'media="print" onload="this.media=\'all\'"',
+            );
             return renderedRoute;
           },
         },
