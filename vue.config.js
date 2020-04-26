@@ -28,6 +28,15 @@ module.exports = {
               (item) => `/gallery/april/${item.filename}`,
             ),
           ],
+          minify: {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: false,
+            removeComments: false,
+            decodeEntities: true,
+            keepClosingSlash: true,
+            sortAttributes: true,
+            collapseInlineTagWhitespace: true,
+          },
           postProcess(renderedRoute) {
             renderedRoute.html = renderedRoute.html.replace(
               /id="app"/,
