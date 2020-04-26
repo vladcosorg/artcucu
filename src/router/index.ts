@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Gallery from '@/views/Gallery.vue';
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -17,7 +18,7 @@ const router = new VueRouter({
     {
       path: '/gallery/:album(march|april)/:id?/',
       name: 'gallery',
-      component: () => import(/* webpackChunkName: "gallery" */ '../views/Gallery.vue'),
+      component: Gallery,
       props: true,
     },
     {

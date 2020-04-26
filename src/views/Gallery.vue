@@ -21,6 +21,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Label from '@/components/carousel/Label.vue';
 import Pic from '@/components/carousel/Pic.vue';
+import LikeButton from '@/components/LikeButton.vue';
 import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import { MetaInfo } from 'vue-meta';
@@ -28,7 +29,7 @@ import config from '@/cloudinary/config';
 
 @Component({
   components: {
-    LikeButton: () => import(/* webpackChunkName: "like" */ '@/components/LikeButton.vue'),
+    LikeButton,
     Label,
     Pic,
     CCarouselItem,
