@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import VueAnalytics from 'vue-ua';
 import VueRouter from 'vue-router';
+import VueGtag from 'vue-gtag';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
 import Carousel from 'buefy/src/components/carousel';
@@ -27,22 +27,21 @@ Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueRouter);
 
-Vue.use(VueAnalytics, {
-  appName: 'artcucu', // Mandatory
-  appVersion: '1', // Mandatory
-  trackingId: 'UA-163444987-1',
-  router,
-});
-
+if (process.env.NODE_ENV === 'production') {
+  Vue.use(
+    VueGtag,
+    {
+      config: { id: 'UA-163444987-1' },
+      appName: 'Artcucu',
+      pageTrackerScreenviewEnabled: true,
+    },
+    router,
+  );
+}
 Vue.config.productionTip = false;
 const root = new Vue({
   router,
   render: (h) => h(App),
-  // firestore() {
-  //   return {
-  //     lol: firebaseApp.firestore().collection('lol'),
-  //   };
-  // },
 });
 
 const resize = () => {
