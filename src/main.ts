@@ -30,7 +30,7 @@ Vue.use(VueRouter);
 Vue.use(VueAnalytics, {
   appName: 'artcucu', // Mandatory
   appVersion: '1', // Mandatory
-  trackingId: '228830496',
+  trackingId: 'UA-163444987-1',
 });
 
 Vue.config.productionTip = false;
