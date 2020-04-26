@@ -23,8 +23,12 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss" module>
-.wrapper {
+:global .js :local .wrapper {
   height: calc(var(--vh, 1vh) * 100);
+}
+
+.wrapper {
+  height: 100vh;
   background-repeat: no-repeat;
   background-position: bottom center;
   background-attachment: fixed;
