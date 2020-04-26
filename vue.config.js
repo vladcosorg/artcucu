@@ -37,6 +37,14 @@ module.exports = {
               /id="app"/,
               'id="app" data-server-rendered="true"',
             );
+            renderedRoute.html = renderedRoute.html.replace(
+              /<script charset="utf-8" src=".*?"><\/script>/g,
+              '',
+            );
+            renderedRoute.html = renderedRoute.html.replace(
+              /<link rel="stylesheet" type="text\/css" href=".*?">/g,
+              '',
+            );
             return renderedRoute;
           },
         },
