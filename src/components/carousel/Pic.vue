@@ -1,5 +1,5 @@
 <style lang="scss" module>
-$border: 9px;
+$border: 6px;
 $padding: $border + 2px;
 
 .wrapper {
@@ -15,7 +15,7 @@ $padding: $border + 2px;
   top: 50%;
   transform: translateY(-50%);
   max-height: 100%;
-  box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.32);
+  box-shadow: $border $border 4px 0 rgba(36, 38, 47, 0.12);
 }
 
 .loading {
