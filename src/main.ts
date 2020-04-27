@@ -46,7 +46,6 @@ const root = new Vue({
 
 const resize = () => {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  document.documentElement.classList.add('js');
 };
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -33,6 +33,7 @@ module.exports = {
             collapseInlineTagWhitespace: true,
           },
           postProcess(renderedRoute) {
+            renderedRoute.html = renderedRoute.html.replace(/<html.*?>/, '<html lang=en>');
             renderedRoute.html = renderedRoute.html.replace(
               /id="app"/,
               'id="app" data-server-rendered="true"',
