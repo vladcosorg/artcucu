@@ -29,7 +29,7 @@ module.exports = {
             removeComments: false,
             decodeEntities: true,
             keepClosingSlash: true,
-            sortAttributes: false,
+            sortAttributes: true,
             collapseInlineTagWhitespace: true,
           },
           postProcess(renderedRoute) {
@@ -47,8 +47,8 @@ module.exports = {
               '',
             );
             renderedRoute.html = renderedRoute.html.replace(
-              /<link rel="stylesheet" href="https:\/\/fonts.googleapis.com/g,
-              '<link rel="prefetch" href="https://fonts.googleapis.com',
+              /media="all" onload="this.media='all'"/g,
+              'media="print" onload="this.media=\'all\'"',
             );
             return renderedRoute;
           },
