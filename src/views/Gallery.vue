@@ -114,7 +114,7 @@ export default class Gallery extends Vue {
 
 <style lang="scss">
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .carousel-items {
