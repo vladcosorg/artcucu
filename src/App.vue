@@ -1,12 +1,16 @@
 <template>
   <div :class="$style.wrapper" id="app">
-    <Header :class="$style.header" />
-    <div :class="$style.view">
-      <LazyHydrate when-idle>
+    <LazyHydrate ssr-only>
+      <Header :class="$style.header" ssr />
+    </LazyHydrate>
+    <LazyHydrate when-idle>
+      <div :class="$style.view">
         <router-view></router-view>
-      </LazyHydrate>
-    </div>
-    <Goo :class="$style.goo" />
+      </div>
+    </LazyHydrate>
+    <LazyHydrate ssr-only>
+      <Goo :class="$style.goo" />
+    </LazyHydrate>
   </div>
 </template>
 
