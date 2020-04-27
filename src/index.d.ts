@@ -21,6 +21,7 @@ declare module '*.svg?sprite' {
 }
 
 declare module 'vue-firestore';
+declare module 'vue-lazy-hydration';
 declare module 'vue-ua';
 declare module 'cloudinary-core/src/url';
 declare module 'js-combinatorics';

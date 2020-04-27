@@ -2,7 +2,9 @@
   <div :class="$style.wrapper" id="app">
     <Header :class="$style.header" />
     <div :class="$style.view">
-      <router-view></router-view>
+      <LazyHydrate when-idle>
+        <router-view></router-view>
+      </LazyHydrate>
     </div>
     <Goo :class="$style.goo" />
   </div>
@@ -12,11 +14,12 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Goo from '@/components/Goo.vue';
-
+import LazyHydrate from 'vue-lazy-hydration';
 @Component({
   components: {
     Header,
     Goo,
+    LazyHydrate,
   },
 })
 export default class App extends Vue {}

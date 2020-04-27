@@ -34,6 +34,7 @@
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-gtag": "^1.6.2",
+    "vue-lazy-hydration": "^1.0.0-beta.12",
     "vue-meta": "^2.3.3",
     "vue-property-decorator": "^8.4.1",
     "vue-router": "^3.1.6",
