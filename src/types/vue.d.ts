@@ -6,10 +6,12 @@ declare module 'vue/types/vue' {
   // 3. Declare augmentation for Vue
   interface Vue {
     $firestore: [];
+    $isPrerendering: boolean;
   }
 
   interface VueConstructor {
     $myGlobal: string;
+    $isPrerendering: boolean;
   }
 }
 

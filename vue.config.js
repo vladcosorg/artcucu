@@ -52,6 +52,10 @@ module.exports = {
             );
             return renderedRoute;
           },
+          renderer: new PrerenderSPAPlugin.PuppeteerRenderer({
+            injectProperty: 'isPrerendering',
+            inject: true,
+          }),
         },
       ]);
       config.module

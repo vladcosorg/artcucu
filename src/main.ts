@@ -14,6 +14,7 @@ import App from './App.vue';
 
 import './assets/scss/app.scss';
 
+Vue.prototype.$isPrerendering = window.isPrerendering || false;
 Vue.use(Vue2Storage, {
   prefix: 'cucu_',
   driver: 'local',
@@ -26,7 +27,6 @@ Vue.use(VueMeta, {
 Vue.use(Carousel);
 Vue.use(Icon);
 Vue.use(VueRouter);
-
 if (process.env.NODE_ENV === 'production') {
   Vue.use(
     VueGtag,

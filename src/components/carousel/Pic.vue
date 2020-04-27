@@ -77,7 +77,7 @@ export default class Pic extends Vue {
   }
 
   get sources() {
-    if (!this.loaded) {
+    if (!this.loaded || this.$isPrerendering) {
       return [];
     }
     return config.formats;
