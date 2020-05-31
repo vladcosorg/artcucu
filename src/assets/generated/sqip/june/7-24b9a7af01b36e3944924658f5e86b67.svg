@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1143" height="1517" viewBox="0 0 1146 1517">
+    <defs/>
+    <filter id="a">
+        <feGaussianBlur stdDeviation="55"/>
+    </filter>
+    <rect width="100%" height="100%" fill="#556c85"/>
+    <g filter="url(#a)">
+        <g fill-opacity=".5" transform="translate(3 3) scale(5.92578)">
+            <circle cx="62" cy="119" r="188" fill="#fff"/>
+            <circle r="1" fill="#fffaed" transform="rotate(-.6 12581.5 -7840.4) scale(192 143.48078)"/>
+            <circle cx="95" cy="164" r="66" fill="#a092a0"/>
+            <path fill="#b15737" d="M33 207h130v17H33z"/>
+            <circle r="1" fill="#fff" transform="matrix(8.17049 176.33796 -15.65611 .72541 169.1 91)"/>
+            <ellipse cx="21" cy="116" fill="#fff" rx="13" ry="192"/>
+            <circle r="1" fill="#fff" transform="matrix(.07375 -12.03273 103.55535 .63471 101.6 236.2)"/>
+            <ellipse cx="86" cy="20" fill="#fff" rx="184" ry="12"/>
+        </g>
+    </g>
+</svg>
