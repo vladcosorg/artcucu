@@ -9,14 +9,14 @@ const router = new VueRouter({
   routes: [
     {
       path: '/',
-      redirect: '/gallery/april/',
+      redirect: '/gallery/june/',
     },
     {
       path: '/gallery/',
-      redirect: '/gallery/april/',
+      redirect: '/gallery/june/',
     },
     {
-      path: '/gallery/:album(march|april)/:id?/',
+      path: '/gallery/:album(march|april|june)/:id?/',
       name: 'gallery',
       component: Gallery,
       props: true,

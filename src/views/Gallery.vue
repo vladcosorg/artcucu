@@ -98,6 +98,10 @@ export default class Gallery extends Vue {
       this.$router.push({
         path: `/gallery/april/${this.slideMap[id]}/`,
       });
+    } else if (this.album === 'june') {
+      this.$router.push({
+        path: `/gallery/june/${this.slideMap[id]}/`,
+      });
     } else {
       this.$router.push({
         path: `/gallery/${this.slideMap[id]}/`,

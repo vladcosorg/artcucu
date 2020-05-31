@@ -15,7 +15,7 @@ cl.config({
 const cwd = path.resolve(__dirname, '..');
 
 async function run() {
-  const paths = await globbby('assets/images/gallery/*.png', {
+  const paths = await globbby('assets/images/gallery/**/*.png', {
     cwd,
   });
 
