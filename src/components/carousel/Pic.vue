@@ -48,7 +48,8 @@ $padding: $border + 2px;
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import config, { Format } from '@/cloudinary/config';
-import manifest from '@/assets/generated/sqip/manifest.json';
+
+const manifest: { [key: string]: string } = require('@/assets/generated/sqip/manifest.json');
 
 @Component({})
 export default class Pic extends Vue {
