@@ -44,12 +44,11 @@ $padding: $border + 2px;
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require */
+/* eslint-disable @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require,import/no-unresolved */
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
 import config, { Format } from '@/cloudinary/config';
-
-const manifest: { [key: string]: string } = require('@/assets/generated/sqip/manifest.json');
+import manifest from '@/assets/generated/sqip/manifest.json';
 
 @Component({})
 export default class Pic extends Vue {
