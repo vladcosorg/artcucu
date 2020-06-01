@@ -1,5 +1,5 @@
 import { picCollection } from '@/firebase';
-import AprilGallery from '@/assets/meta/april.json';
+import AprilGallery from '@/assets/meta/june.json';
 import { LikedCarouselItem } from '@/types';
 
 class Likes {
@@ -9,7 +9,7 @@ class Likes {
     AprilGallery.forEach((item) => {
       results.push({
         ...item,
-        likes: likeList[item.filename],
+        likes: likeList[item.filename] || 0,
       });
     });
     results.sort((first: LikedCarouselItem, second: LikedCarouselItem) => {

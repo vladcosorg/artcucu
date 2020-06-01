@@ -45,7 +45,7 @@ export default class Results extends Vue {
       'w_800,h_480,c_pad,b_auto:predominant',
       filename,
       'jpg',
-      'april',
+      'june',
     );
   }
 
