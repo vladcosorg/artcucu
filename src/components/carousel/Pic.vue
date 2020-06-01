@@ -101,7 +101,7 @@ export default class Pic extends Vue {
   getImage(width: number, format: Format) {
     return `https://res.cloudinary.com/${
       config.cloudName
-    }/image/upload/${config.getTransformationString(width)}/v2/assets/images/gallery/${this.dir}/${
+    }/image/upload/${config.getTransformationString(width)}/v3/assets/images/gallery/${this.dir}/${
       this.item.filename
     }.${format}`;
   }
