@@ -22,6 +22,9 @@ module.exports = {
             ...require('./src/assets/meta/april.json').map(
               (item) => `/gallery/april/${item.filename}`,
             ),
+            ...require('./src/assets/meta/june.json').map(
+              (item) => `/gallery/june/${item.filename}`,
+            ),
           ],
           minify: {
             collapseBooleanAttributes: true,
