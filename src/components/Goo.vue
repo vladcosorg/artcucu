@@ -3,7 +3,7 @@
     <svg :viewBox="svg.viewBox" :class="$style.goo">
       <use :xlink:href="`#${svg.id}`" />
     </svg>
-    <span :class="$style.text">#staiacasa</span>
+    <span :class="$style.text">La multi ani copii!</span>
   </div>
 </template>
 
@@ -39,6 +39,6 @@ export default class Goo extends Vue {
   font-style: italic;
   display: flex;
   color: $black;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 </style>

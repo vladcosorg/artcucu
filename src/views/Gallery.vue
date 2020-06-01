@@ -38,7 +38,7 @@ import config from '@/cloudinary/config';
     if (this.currentSlide === undefined) {
       return {};
     }
-    const title = `${this.currentSlide.title} - ${this.currentSlide.author} | ArtCucu - Stai Acasa si Admira`;
+    const title = `${this.currentSlide.title} - ${this.currentSlide.author} | ArtCucu - Expoziții Online de Pictură și Grafică`;
     return {
       title,
       meta: [
