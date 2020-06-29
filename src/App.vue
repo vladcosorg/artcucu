@@ -19,6 +19,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Goo from '@/components/Goo.vue';
 import LazyHydrate from 'vue-lazy-hydration';
+
 @Component({
   components: {
     Header,

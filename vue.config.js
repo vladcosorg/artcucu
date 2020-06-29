@@ -19,12 +19,15 @@ module.exports = {
             '/',
             '/results',
             ...require('./src/assets/meta/march.json').map((item) => `/gallery/${item.filename}`),
+            '/gallery/march',
             ...require('./src/assets/meta/april.json').map(
               (item) => `/gallery/april/${item.filename}`,
             ),
+            '/gallery/april',
             ...require('./src/assets/meta/june.json').map(
               (item) => `/gallery/june/${item.filename}`,
             ),
+            '/gallery/june',
           ],
           minify: {
             collapseBooleanAttributes: true,
