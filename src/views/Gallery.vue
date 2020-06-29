@@ -11,7 +11,8 @@
   >
     <c-carousel-item :key="key" v-for="(item, key) in items">
       <Pic :item="item" :dir="album" />
-      <LikeButton :id="item.filename" class="like" />
+      <ShareButton class="like" />
+      <!--      <LikeButton :id="item.filename" class="like" />-->
       <Label :item="item" />
     </c-carousel-item>
   </b-carousel>
@@ -26,6 +27,7 @@ import CCarouselItem from '@/components/carousel/CarouselItem.vue';
 import { CarouselItem } from '@/types';
 import { MetaInfo } from 'vue-meta';
 import config from '@/cloudinary/config';
+import ShareButton from '@/components/carousel/ShareButton.vue';
 
 @Component({
   components: {
@@ -33,6 +35,7 @@ import config from '@/cloudinary/config';
     Label,
     Pic,
     CCarouselItem,
+    ShareButton,
   },
   metaInfo(this: Gallery): MetaInfo {
     if (this.currentSlide === undefined) {
@@ -128,9 +131,6 @@ body {
     }
     opacity: 1;
   }
-}
-
-.mdi {
 }
 
 .mdi-chevron-left,

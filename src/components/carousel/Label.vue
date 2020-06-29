@@ -13,11 +13,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { CarouselItem } from '@/types';
-import ShareButton from '@/components/carousel/ShareButton.vue';
+// import ShareButton from '@/components/carousel/ShareButton.vue';
 
 @Component({
   components: {
-    ShareButton,
+    // ShareButton,
   },
 })
 export default class Label extends Vue {
@@ -60,7 +60,7 @@ export default class Label extends Vue {
 
 .card {
   background-color: #ffffffcf;
-  margin: 1.5rem 1.5rem 0;
+  margin: 1.5rem;
   padding: 1rem 1rem;
   color: $black-ter;
   @include mobile {
@@ -98,8 +98,7 @@ export default class Label extends Vue {
 
     @include mobile {
       line-height: 1.1;
-      font-size: 0.9rem;
-      padding-bottom: 40px;
+      font-size: 1.1rem;
     }
   }
 
@@ -110,19 +109,6 @@ export default class Label extends Vue {
     @include mobile {
       display: none;
     }
-  }
-}
-
-.share svg {
-  width: 80px;
-  display: block;
-  margin: 0.5rem;
-  @include mobile {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    margin: 0;
-    margin-left: -40px;
   }
 }
 </style>
